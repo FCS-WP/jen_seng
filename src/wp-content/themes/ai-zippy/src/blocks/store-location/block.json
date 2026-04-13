@@ -1,0 +1,32 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "ai-zippy/store-location",
+	"version": "1.0.0",
+	"title": "Store Location",
+	"category": "ai-zippy",
+	"icon": "location",
+	"description": "Store location info with map and details.",
+	"supports": {
+		"html": false,
+		"align": ["wide", "full"],
+		"spacing": { "margin": true, "padding": true }
+	},
+	"attributes": {
+		"mapImage": { "type": "string", "default": "https://images.unsplash.com/photo-1569144157591-c60f3f82f137?w=700" },
+		"label": { "type": "string", "default": "Find Us" },
+		"title": { "type": "string", "default": "Find Us at Serangoon Central" },
+		"address": { "type": "string", "default": "Blk 264 Serangoon Central, #01-231, Singapore 550264" },
+		"hours": { "type": "string", "default": "Monday to Sunday: 9:00am – 5:00pm" },
+		"email": { "type": "string", "default": "jensengserangoon@outlook.com" },
+		"dirText": { "type": "string", "default": "Get Directions →" },
+		"dirUrl": { "type": "string", "default": "#" },
+		"contactText": { "type": "string", "default": "Contact Us" },
+		"contactUrl": { "type": "string", "default": "#" }
+	},
+	"textdomain": "ai-zippy",
+	"editorScript": "file:./index.js",
+	"editorStyle": "file:./index.css",
+	"style": "file:./style-index.css",
+	"render": "file:./render.php"
+}

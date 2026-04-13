@@ -1,0 +1,32 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "ai-zippy/usp-grid",
+	"version": "1.0.0",
+	"title": "USP Grid",
+	"category": "ai-zippy",
+	"icon": "awards",
+	"description": "Grid of unique selling points with icons.",
+	"supports": {
+		"html": false,
+		"align": ["wide", "full"],
+		"spacing": { "margin": true, "padding": true }
+	},
+	"attributes": {
+		"label": { "type": "string", "default": "Why Choose Us" },
+		"title": { "type": "string", "default": "Why Thousands of Singaporeans Trust Jen Seng" },
+		"usps": {
+			"type": "array",
+			"default": [
+				{ "icon": "🫶", "title": "Personalised Advice", "desc": "One-on-one guidance from experienced TCM practitioners." },
+				{ "icon": "🌿", "title": "Wide Product Range", "desc": "From loose herbs and ginseng to bird's nest and cordyceps." },
+				{ "icon": "🏪", "title": "Trusted Since 1993", "desc": "Over 30 years serving Serangoon Central — a neighbourhood institution." }
+			]
+		}
+	},
+	"textdomain": "ai-zippy",
+	"editorScript": "file:./index.js",
+	"editorStyle": "file:./index.css",
+	"style": "file:./style-index.css",
+	"render": "file:./render.php"
+}

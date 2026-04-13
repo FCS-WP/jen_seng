@@ -1,0 +1,34 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "ai-zippy/category-grid",
+	"version": "1.0.0",
+	"title": "Category Grid",
+	"category": "ai-zippy",
+	"icon": "grid-view",
+	"description": "Grid of category cards with images and links.",
+	"supports": {
+		"html": false,
+		"align": ["wide", "full"],
+		"spacing": { "margin": true, "padding": true }
+	},
+	"attributes": {
+		"label": { "type": "string", "default": "Browse by Need" },
+		"title": { "type": "string", "default": "Traditional Remedies for Everyday Wellness" },
+		"subtitle": { "type": "string", "default": "From time-honoured loose herbs to premium tonics — find what your body needs." },
+		"categories": {
+			"type": "array",
+			"default": [
+				{ "img": "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=500", "tag": "Popular", "title": "Herbal Remedies", "desc": "Immunity boosters, heatiness relief, detox teas.", "link": "#" },
+				{ "img": "https://images.unsplash.com/photo-1611070964632-60dee62ba00b?w=500", "tag": "", "title": "Tonics & Supplements", "desc": "Bird's nest, cordyceps, ginseng and premium vitality tonics.", "link": "#" },
+				{ "img": "https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=500", "tag": "Speciality", "title": "Confinement Care", "desc": "Post-natal herbal soups and tonics for new mothers.", "link": "#" },
+				{ "img": "https://images.unsplash.com/photo-1563205764-cd984df2a2a4?w=500", "tag": "", "title": "Dried Herbs & Ingredients", "desc": "Dang Gui, Lingzhi, raw herbs and quality ingredients.", "link": "#" }
+			]
+		}
+	},
+	"textdomain": "ai-zippy",
+	"editorScript": "file:./index.js",
+	"editorStyle": "file:./index.css",
+	"style": "file:./style-index.css",
+	"render": "file:./render.php"
+}
