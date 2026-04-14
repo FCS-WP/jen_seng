@@ -1,0 +1,24 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "ai-zippy/knowledge-grid",
+	"version": "1.0.0",
+	"title": "Knowledge Grid",
+	"category": "ai-zippy",
+	"icon": "welcome-learn-more",
+	"description": "Grid of latest blog posts/knowledge base",
+	"attributes": {
+		"postsPerPage": {
+			"type": "number",
+			"default": 3
+		},
+		"category": {
+			"type": "number",
+			"default": 0
+		}
+	},
+	"editorScript": "file:./index.js",
+	"editorStyle": "file:./index.css",
+	"style": "file:./style-index.css",
+	"render": "file:./render.php"
+}

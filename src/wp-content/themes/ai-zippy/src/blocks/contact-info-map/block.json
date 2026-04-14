@@ -1,0 +1,40 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "ai-zippy/contact-info-map",
+	"version": "1.0.0",
+	"title": "Contact Info & Map",
+	"category": "ai-zippy",
+	"icon": "location",
+	"description": "Information card and map section",
+	"supports": {
+		"html": false,
+		"align": ["wide", "full"]
+	},
+	"attributes": {
+		"address": {
+			"type": "string",
+			"default": "Blk 264 Serangoon Central\n#01-231, Singapore 550264"
+		},
+		"hours": {
+			"type": "string",
+			"default": "Monday to Sunday\n9:00am – 5:00pm"
+		},
+		"email": {
+			"type": "string",
+			"default": "jensengserangoon@outlook.com"
+		},
+		"phone": {
+			"type": "string",
+			"default": "+65 6288 1234"
+		},
+		"mapImageUrl": {
+			"type": "string",
+			"default": "https://images.unsplash.com/photo-1569144157591-c60f3f82f137?w=800&q=75"
+		}
+	},
+	"editorScript": "file:./index.js",
+	"editorStyle": "file:./index.css",
+	"style": "file:./style-index.css",
+	"render": "file:./render.php"
+}

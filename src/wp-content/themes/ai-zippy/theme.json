@@ -11,9 +11,24 @@
 					"name": "Jen Seng Red"
 				},
 				{
+					"slug": "primary-dark",
+					"color": "#6A1010",
+					"name": "Red Dark"
+				},
+				{
+					"slug": "primary-light",
+					"color": "#F5EAEA",
+					"name": "Red Light"
+				},
+				{
 					"slug": "secondary",
-					"color": "#F5C842",
+					"color": "#FDF8E1",
 					"name": "Jen Seng Yellow"
+				},
+				{
+					"slug": "secondary-light",
+					"color": "#FDF8E1",
+					"name": "Yellow Light"
 				},
 				{
 					"slug": "background",
@@ -21,9 +36,24 @@
 					"name": "Jen Seng Cream"
 				},
 				{
+					"slug": "cream-dark",
+					"color": "#F5F0E8",
+					"name": "Cream Dark"
+				},
+				{
+					"slug": "cream-muted",
+					"color": "#EDE6D6",
+					"name": "Cream Muted"
+				},
+				{
 					"slug": "text",
 					"color": "#2E2420",
 					"name": "Jen Seng Dark"
+				},
+				{
+					"slug": "mid",
+					"color": "#6B5E56",
+					"name": "Mid"
 				},
 				{
 					"slug": "muted",
@@ -31,11 +61,20 @@
 					"name": "Muted"
 				},
 				{
-					"slug": "accent-light",
-					"color": "#F5EAEA",
-					"name": "Red Light"
+					"slug": "border",
+					"color": "#E2D8CC",
+					"name": "Border"
+				},
+				{
+					"slug": "white",
+					"color": "#FFFFFF",
+					"name": "White"
+				},
+				{
+					"slug": "footer-bg",
+					"color": "#1C1410",
+					"name": "Footer Background"
 				}
-
 			]
 		},
 		"custom": {
@@ -53,9 +92,29 @@
 					"fontFamily": "-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', sans-serif",
 					"slug": "system",
 					"name": "System"
+				},
+				{
+					"fontFamily": "'Lora', serif",
+					"slug": "heading",
+					"name": "Heading (Lora)"
+				},
+				{
+					"fontFamily": "'Source Sans 3', sans-serif",
+					"slug": "body",
+					"name": "Body (Source Sans 3)"
+				},
+				{
+					"fontFamily": "'Noto Serif SC', serif",
+					"slug": "decorative",
+					"name": "Decorative (Noto Serif SC)"
 				}
 			],
 			"fontSizes": [
+				{
+					"slug": "tiny",
+					"size": "0.75rem",
+					"name": "Tiny"
+				},
 				{
 					"slug": "small",
 					"size": "0.875rem",
@@ -83,7 +142,14 @@
 			"wideSize": "1400px"
 		},
 		"spacing": {
-			"units": ["px", "em", "rem", "%", "vw", "vh"]
+			"units": [
+				"px",
+				"em",
+				"rem",
+				"%",
+				"vw",
+				"vh"
+			]
 		}
 	},
 	"styles": {
@@ -97,7 +163,16 @@
 			"lineHeight": "1.6"
 		},
 		"spacing": {
-			"blockGap": "1.5rem"
+			"blockGap": "0"
+		},
+		"blocks": {
+			"ai-zippy/home-hero": {
+				"spacing": {
+					"margin": {
+						"top": "0"
+					}
+				}
+			}
 		}
 	},
 	"templateParts": [
@@ -116,27 +191,38 @@
 		{
 			"name": "blank",
 			"title": "Blank",
-			"postTypes": ["page", "post"]
+			"postTypes": [
+				"page",
+				"post"
+			]
 		},
 		{
 			"name": "page-about",
 			"title": "About",
-			"postTypes": ["page"]
+			"postTypes": [
+				"page"
+			]
 		},
 		{
 			"name": "page-contact",
 			"title": "Contact",
-			"postTypes": ["page"]
+			"postTypes": [
+				"page"
+			]
 		},
 		{
 			"name": "page-cart",
 			"title": "Cart",
-			"postTypes": ["page"]
+			"postTypes": [
+				"page"
+			]
 		},
 		{
 			"name": "page-checkout",
 			"title": "Checkout",
-			"postTypes": ["page"]
+			"postTypes": [
+				"page"
+			]
 		}
 	]
 }

@@ -1,0 +1,74 @@
+@use "../../scss/variables" as *;
+
+.whatsapp-banner-section {
+	padding: 40px 32px;
+	background: #fff;
+
+	.wa-banner {
+		max-width: 1200px;
+		margin: 0 auto;
+		background: linear-gradient(135deg, #128C7E, #25D366);
+		border-radius: 16px;
+		padding: 32px 40px;
+		display: flex;
+		align-items: center;
+		gap: 24px;
+
+		@include until(md) {
+			flex-direction: column;
+			text-align: center;
+			padding: 32px 20px;
+		}
+	}
+
+	.wa-banner-icon {
+		font-size: 48px;
+		flex-shrink: 0;
+	}
+
+	.wa-banner-text {
+		flex: 1;
+
+		h3 {
+			font-family: var(--wp--preset--font-family--heading);
+			font-size: 20px;
+			font-weight: 600;
+			color: #fff;
+			margin-bottom: 6px;
+		}
+
+		p {
+			font-size: 14px;
+			color: rgba(255, 255, 255, 0.85);
+			line-height: 1.6;
+			margin: 0;
+		}
+	}
+
+	.btn-wa {
+		margin-left: auto;
+		flex-shrink: 0;
+		background: #fff;
+		color: #128C7E !important;
+		font-family: inherit;
+		font-size: 14px;
+		font-weight: 700;
+		padding: 12px 24px;
+		border-radius: 8px;
+		display: flex;
+		align-items: center;
+		gap: 8px;
+		transition: all 0.2s;
+		white-space: nowrap;
+		text-decoration: none;
+
+		&:hover {
+			transform: translateY(-1px);
+			box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+		}
+
+		@include until(md) {
+			margin-left: 0;
+		}
+	}
+}

@@ -1,0 +1,7 @@
+// Editor-specific styles for contact-hero
+.contact-hero {
+    // Ensure RichText placeholders are visible
+    [data-placeholder]::before {
+        opacity: 0.5;
+    }
+}

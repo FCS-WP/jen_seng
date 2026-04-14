@@ -7,26 +7,36 @@
 // Single source of truth: theme.json
 // =============================================================================
 
-// ---- COLORS (mapped from theme.json) ----
-// Usage: color: $c-primary; or color: var(--wp--preset--color--primary);
-$c-primary:   var(--wp--preset--color--primary);    // #1a1a1a
-$c-secondary: var(--wp--preset--color--secondary);   // #f5f5f5
-$c-accent:    var(--wp--preset--color--accent);      // #c8a97e
-$c-white:     var(--wp--preset--color--white);       // #ffffff
-$c-black:     var(--wp--preset--color--black);       // #000000
-$c-navy:      var(--wp--preset--color--navy);        // #1b2a4a
-$c-orange:    var(--wp--preset--color--orange);      // #ff6b00
-$c-danger:    var(--wp--preset--color--danger);      // #e53935
-$c-success:   var(--wp--preset--color--success);     // #4caf50
-$c-info:      var(--wp--preset--color--info);        // #2196f3
-$c-border:    var(--wp--preset--color--border);      // #e5e5e5
-$c-muted:     var(--wp--preset--color--muted);       // #999999
+// ---- CORE PALETTE (mapped from theme.json) ----
+$c-primary:         var(--wp--preset--color--primary);
+$c-primary-dark:    var(--wp--preset--color--primary-dark);
+$c-primary-light:   var(--wp--preset--color--primary-light);
+$c-secondary:       var(--wp--preset--color--secondary);
+$c-secondary-light: var(--wp--preset--color--secondary-light);
+$c-background:      var(--wp--preset--color--background);
+$c-cream-dark:      var(--wp--preset--color--cream-dark);
+$c-cream-muted:     var(--wp--preset--color--cream-muted);
+$c-text:            var(--wp--preset--color--text);
+$c-mid:             var(--wp--preset--color--mid);
+$c-muted:           var(--wp--preset--color--muted);
+$c-border:          var(--wp--preset--color--border);
+$c-white:           var(--wp--preset--color--white);
+$c-footer-bg:       var(--wp--preset--color--footer-bg);
 
-// ---- BREAKPOINTS (synced with theme.json custom.breakpoint) ----
+// ---- ALIASES & DEPRECATED (to prevent build errors in legacy files) ----
+$c-accent:  $c-secondary;
+$c-navy:    $c-text;
+$c-orange:  $c-secondary;
+$c-black:   $c-text;
+$c-danger:  $c-primary;
+$c-success: #4caf50;
+$c-info:    #2196f3;
+
+// ---- BREAKPOINTS ----
 $bp-sm:  480px;
 $bp-md:  768px;
-$bp-lg:  1024px;
-$bp-xl:  1200px;
+$bp-lg: 1024px;
+$bp-xl: 1200px;
 $bp-xxl: 1400px;
 
 // ---- LAYOUT ----
@@ -42,9 +52,6 @@ $box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
 $box-shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.1);
 
 // ---- RESPONSIVE MIXINS ----
-// Mobile-first: @include from(md) { ... }
-// Desktop-first: @include until(md) { ... }
-
 @mixin from($bp) {
   @if $bp == sm  { @media (min-width: $bp-sm)  { @content; } }
   @else if $bp == md  { @media (min-width: $bp-md)  { @content; } }

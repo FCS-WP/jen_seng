@@ -1,33 +1,91 @@
 @use "variables" as *;
 
 // Sticky header
-header.wp-block-group {
+header.site-header {
 	position: sticky;
 	top: 0;
 	z-index: 100;
 	transition: box-shadow $transition-speed ease;
 
-	// Add shadow on scroll (via JS or native)
 	&.is-scrolled {
-		box-shadow: $box-shadow;
+		box-shadow: $box-shadow-lg;
+	}
+}
+
+.announce-bar {
+	background-color: var(--wp--preset--color--secondary);
+	color: var(--wp--preset--color--text);
+	border-bottom: 1px solid #E8D890;
+
+	p {
+		margin: 0;
+		color: inherit;
+	}
+}
+
+.nav-logo {
+	&-icon {
+		p {
+			margin: 0;
+			font-size: 20px;
+		}
+	}
+
+	&-text {
+		.wp-block-site-title {
+			font-family: var(--wp--preset--font-family--heading);
+			font-size: 16px;
+			letter-spacing: 0.3px;
+			margin: 0;
+
+			a {
+				color: inherit;
+				text-decoration: none;
+			}
+		}
+
+		p {
+			margin: 0;
+			letter-spacing: 1.2px;
+			text-transform: uppercase;
+		}
 	}
 }
 
 // Navigation links
-.wp-block-navigation a {
-	transition: color $transition-speed ease;
+.wp-block-navigation {
+	a {
+		color: $c-mid !important;
+		padding: 0.5rem 1rem;
+		transition: all $transition-speed ease;
 
-	&:hover {
-		color: $c-accent !important;
+		&:hover {
+			color: $c-primary !important;
+			background: var(--wp--preset--color--cream-dark);
+			border-radius: 6px;
+		}
+	}
+
+	.current-menu-item>a,
+	.current-menu-ancestor>a {
+		color: $c-primary !important;
+		font-weight: 600;
 	}
 }
 
-// CTA button in header
-header .wp-block-button__link {
-	transition: transform $transition-speed ease, box-shadow $transition-speed ease;
+// Icons area
+.nav-icons {
+	display: flex;
+	align-items: center;
+	gap: 12px;
 
-	&:hover {
-		transform: translateY(-1px);
-		box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+	.wc-block-mini-cart__button {
+		border-radius: 8px;
+		padding: 8px;
+		transition: all $transition-speed ease;
+
+		&:hover {
+			background: var(--wp--preset--color--cream-dark);
+		}
 	}
 }

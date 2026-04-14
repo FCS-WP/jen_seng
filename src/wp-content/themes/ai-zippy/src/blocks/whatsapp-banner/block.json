@@ -1,0 +1,28 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "ai-zippy/whatsapp-banner",
+	"version": "1.0.0",
+	"title": "WhatsApp Banner",
+	"category": "ai-zippy",
+	"icon": "whatsapp",
+	"description": "WhatsApp chat CTA banner",
+	"attributes": {
+		"title": {
+			"type": "string",
+			"default": "Prefer to Chat?"
+		},
+		"description": {
+			"type": "string",
+			"default": "Message us on WhatsApp for quick questions about products, stock availability, or personalised recommendations."
+		},
+		"phoneNumber": {
+			"type": "string",
+			"default": ""
+		}
+	},
+	"editorScript": "file:./index.js",
+	"editorStyle": "file:./index.css",
+	"style": "file:./style-index.css",
+	"render": "file:./render.php"
+}
