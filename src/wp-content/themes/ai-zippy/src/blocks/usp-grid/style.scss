@@ -1,0 +1,91 @@
+@use "../../scss/variables" as *;
+
+.wp-block-ai-zippy-usp-grid {
+    background: #fff;
+    padding: 72px 32px;
+
+    .section-inner {
+        max-width: 1200px;
+        margin: 0 auto;
+    }
+
+    .text-center {
+        text-align: center;
+        margin-bottom: 48px;
+        .section-label { justify-content: center; &::before { display: none; } }
+        .section-sub { margin: 0 auto; }
+    }
+
+    .section-label {
+        font-size: 11px;
+        font-weight: 600;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        color: #8B1A1A;
+        margin-bottom: 12px;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+    }
+
+    .section-title {
+        font-family: 'Lora', serif;
+        font-size: clamp(26px, 3vw, 38px);
+        font-weight: 700;
+        color: #2E2420;
+        line-height: 1.2;
+        margin: 0;
+        em { color: #8B1A1A; font-style: normal; }
+    }
+
+    .usp-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 28px;
+    }
+
+    .usp-card {
+        background: #fff;
+        border: 1px solid #E2D8CC;
+        border-radius: 12px;
+        padding: 32px;
+        transition: all .25s;
+
+        &:hover {
+            border-color: #8B1A1A;
+            box-shadow: 0 2px 16px rgba(46,36,32,0.08);
+        }
+    }
+
+    .usp-icon {
+        width: 52px;
+        height: 52px;
+        border-radius: 12px;
+        background: #F5EAEA;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 24px;
+        margin-bottom: 20px;
+    }
+
+    .usp-card h3 {
+        font-family: 'Lora', serif;
+        font-size: 18px;
+        font-weight: 600;
+        color: #2E2420;
+        margin: 0 0 12px 0;
+    }
+
+    .usp-card p {
+        font-size: 14px;
+        color: #6B5E56;
+        line-height: 1.7;
+        margin: 0;
+    }
+
+    @media (max-width: 768px) {
+        padding: 48px 20px;
+        .usp-grid { grid-template-columns: 1fr; }
+    }
+}

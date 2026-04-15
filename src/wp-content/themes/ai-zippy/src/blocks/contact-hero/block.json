@@ -1,0 +1,37 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "ai-zippy/contact-hero",
+	"version": "1.0.0",
+	"title": "Contact Hero",
+	"category": "ai-zippy",
+	"icon": "phone",
+	"description": "Hero section for Contact page",
+	"supports": {
+		"html": false,
+		"align": ["wide", "full"],
+		"spacing": {
+			"margin": true,
+			"padding": true
+		}
+	},
+	"attributes": {
+		"label": {
+			"type": "string",
+			"default": "Get in Touch"
+		},
+		"title": {
+			"type": "string",
+			"default": "We'd Love to Hear From You"
+		},
+		"description": {
+			"type": "string",
+			"default": "Whether you have a question about our products, need advice on a remedy, or just want to know more — we're here to help."
+		}
+	},
+	"textdomain": "ai-zippy",
+	"editorScript": "file:./index.js",
+	"editorStyle": "file:./index.css",
+	"style": "file:./style-index.css",
+	"render": "file:./render.php"
+}

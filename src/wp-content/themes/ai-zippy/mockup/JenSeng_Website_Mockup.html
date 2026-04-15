@@ -1,0 +1,733 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Jen Seng Medical Hall — Website Mockup</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700&family=Lora:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Source+Sans+3:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;font-size:16px}
+body{font-family:'Source Sans 3',sans-serif;color:#2E2420;background:#FFFDF8;overflow-x:hidden}
+img{display:block;max-width:100%;height:auto}
+a{text-decoration:none;color:inherit}
+button{cursor:pointer;border:none;background:none;font-family:inherit}
+:root{
+  --red:#8B1A1A;--red-dk:#6A1010;--red-lt:#F5EAEA;
+  --yellow:#F5C842;--yellow-lt:#FDF8E1;
+  --cream:#FFFDF8;--cream-2:#F5F0E8;--cream-3:#EDE6D6;
+  --dark:#2E2420;--mid:#6B5E56;--muted:#A8998E;--border:#E2D8CC;--white:#FFFFFF;
+  --shadow:0 2px 16px rgba(46,36,32,0.08);--shadow-lg:0 8px 40px rgba(46,36,32,0.12);
+  --radius:8px;--nav-h:72px;
+}
+.toolbar{position:fixed;top:0;left:0;right:0;z-index:9999;background:#1C1410;border-bottom:1px solid #3A2E28;display:flex;align-items:center;gap:6px;padding:0 16px;height:44px;}
+.toolbar-label{font-size:11px;color:#A8998E;font-family:'Source Sans 3',sans-serif;margin-right:6px;white-space:nowrap}
+.pp-btn{font-size:11px;font-family:'Source Sans 3',sans-serif;font-weight:600;padding:4px 12px;border-radius:20px;cursor:pointer;border:none;background:#3A2E28;color:#C8B8A8;transition:all .2s;white-space:nowrap;}
+.pp-btn:hover{background:#5A4838;color:#FFFDF8}
+.pp-btn.active{background:var(--yellow);color:#1C1410}
+.toolbar-sep{width:1px;height:24px;background:#3A2E28;margin:0 4px}
+.mob-btn{font-size:11px;font-family:'Source Sans 3',sans-serif;font-weight:600;padding:4px 10px;border-radius:20px;cursor:pointer;border:1px solid #3A2E28;background:transparent;color:#A8998E;margin-left:auto;transition:all .2s;}
+.mob-btn:hover{background:#3A2E28;color:#FFFDF8}
+.mob-btn.active{background:#3A2E28;color:var(--yellow);border-color:#3A2E28}
+.frame-outer{margin-top:44px;transition:all .3s ease;}
+.frame-outer.mobile-mode{background:#2A2420;display:flex;justify-content:center;padding:20px 0 40px;min-height:calc(100vh - 44px);}
+.frame-wrap{width:100%;overflow-y:auto;transition:all .3s;}
+.frame-outer.mobile-mode .frame-wrap{width:390px;border-radius:32px;overflow:hidden;box-shadow:0 20px 80px rgba(0,0,0,0.5);border:8px solid #333;background:var(--cream);}
+.page{display:none}
+.page.active{display:block}
+.announce-bar{background:var(--yellow-lt);border-bottom:1px solid #E8D890;padding:9px 24px;text-align:center;font-size:13px;color:#7A5A00;font-weight:500;letter-spacing:.2px;}
+.announce-bar span{margin:0 12px;opacity:.5}
+.nav{position:sticky;top:44px;z-index:100;background:var(--white);border-bottom:1px solid var(--border);box-shadow:0 2px 12px rgba(46,36,32,0.06);}
+.nav-inner{max-width:1200px;margin:0 auto;display:flex;align-items:center;padding:0 32px;height:var(--nav-h);gap:32px;}
+.nav-logo{display:flex;align-items:center;gap:12px;flex-shrink:0;}
+.nav-logo-icon{width:44px;height:44px;background:var(--red);border-radius:6px;display:flex;align-items:center;justify-content:center;font-family:'Noto Serif SC',serif;font-size:20px;color:#FFFFFF;font-weight:700;line-height:1;}
+.nav-logo-text .name{font-family:'Lora',serif;font-weight:700;font-size:16px;color:var(--dark);letter-spacing:.3px;display:block;}
+.nav-logo-text .sub{font-size:10px;color:var(--muted);letter-spacing:1.2px;text-transform:uppercase;display:block;}
+.nav-links{display:flex;align-items:center;gap:6px;margin-left:auto;}
+.nav-links a{font-size:14px;font-weight:500;color:var(--mid);padding:6px 14px;border-radius:6px;transition:all .2s;white-space:nowrap;}
+.nav-links a:hover{color:var(--dark);background:var(--cream-2)}
+.nav-links a.active{color:var(--red);font-weight:600}
+.nav-icons{display:flex;align-items:center;gap:6px;margin-left:8px}
+.nav-icon-btn{width:36px;height:36px;border-radius:8px;display:flex;align-items:center;justify-content:center;color:var(--mid);font-size:18px;transition:all .2s;background:transparent;}
+.nav-icon-btn:hover{background:var(--cream-2);color:var(--dark)}
+.cart-wrap{position:relative;}
+.cart-dot{position:absolute;top:-3px;right:-3px;width:14px;height:14px;border-radius:50%;background:var(--red);color:#fff;font-size:8px;font-weight:700;display:flex;align-items:center;justify-content:center;}
+.hamburger{display:none;flex-direction:column;gap:5px;padding:8px;cursor:pointer;background:none;border:none;}
+.hamburger span{width:22px;height:2px;background:var(--dark);border-radius:2px;display:block;}
+.mobile-nav-overlay{display:none;position:fixed;inset:0;z-index:999;background:rgba(0,0,0,0.4);opacity:0;transition:opacity .3s;}
+.mobile-nav-overlay.open{opacity:1}
+.mobile-nav-drawer{position:fixed;top:0;left:-280px;bottom:0;width:280px;z-index:1000;background:var(--white);box-shadow:var(--shadow-lg);transition:left .3s ease;overflow-y:auto;}
+.mobile-nav-drawer.open{left:0}
+.mobile-nav-header{display:flex;align-items:center;justify-content:space-between;padding:20px 24px;border-bottom:1px solid var(--border);}
+.mobile-nav-close{font-size:24px;color:var(--mid);cursor:pointer;line-height:1;background:none;border:none;}
+.mobile-nav-links a{display:block;padding:16px 24px;font-size:16px;font-weight:500;color:var(--dark);border-bottom:1px solid var(--cream-2);transition:background .2s;}
+.mobile-nav-links a:hover{background:var(--cream-2);color:var(--red)}
+.mobile-nav-links a.active{color:var(--red);font-weight:600}
+.mobile-nav-contact{padding:24px;background:var(--cream-2);}
+.mobile-nav-contact p{font-size:13px;color:var(--mid);margin-bottom:6px}
+.btn-primary{display:inline-flex;align-items:center;gap:8px;background:var(--red);color:#FFFFFF;font-family:'Source Sans 3',sans-serif;font-size:14px;font-weight:600;padding:13px 28px;border-radius:6px;transition:all .2s;letter-spacing:.2px;border:2px solid var(--red);}
+.btn-primary:hover{background:var(--red-dk);border-color:var(--red-dk);transform:translateY(-1px);box-shadow:0 4px 16px rgba(139,26,26,0.25)}
+.btn-outline{display:inline-flex;align-items:center;gap:8px;background:transparent;color:var(--red);font-family:'Source Sans 3',sans-serif;font-size:14px;font-weight:600;padding:13px 28px;border-radius:6px;border:2px solid var(--red);transition:all .2s;cursor:pointer;}
+.btn-outline:hover{background:var(--red-lt);transform:translateY(-1px)}
+.btn-sm{padding:9px 20px;font-size:13px}
+.section{padding:72px 32px}
+.section-inner{max-width:1200px;margin:0 auto}
+.section-label{font-size:11px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:var(--red);margin-bottom:12px;display:flex;align-items:center;gap:8px;}
+.section-label::before{content:'';width:24px;height:2px;background:var(--red)}
+.section-title{font-family:'Lora',serif;font-size:clamp(26px,3vw,38px);font-weight:700;color:var(--dark);line-height:1.2;margin-bottom:16px;}
+.section-sub{font-size:16px;color:var(--mid);line-height:1.7;max-width:600px}
+.text-center{text-align:center}
+.text-center .section-label{justify-content:center}
+.text-center .section-label::before{display:none}
+.text-center .section-sub{margin:0 auto}
+.hero{background:var(--cream-2);padding:0;display:grid;grid-template-columns:1fr 1fr;min-height:560px;overflow:hidden;}
+.hero-content{padding:72px 48px 72px 64px;display:flex;flex-direction:column;justify-content:center;}
+.hero-eyebrow{display:inline-flex;align-items:center;gap:8px;background:var(--yellow-lt);border:1px solid #E8D890;border-radius:20px;padding:5px 14px;font-size:12px;font-weight:600;color:#8B7000;letter-spacing:.5px;margin-bottom:28px;width:fit-content;}
+.hero-title{font-family:'Lora',serif;font-size:clamp(32px,4vw,52px);font-weight:700;color:var(--dark);line-height:1.15;margin-bottom:14px;}
+.hero-title em{color:var(--red);font-style:normal}
+.hero-subtitle{font-size:16px;color:var(--mid);line-height:1.8;margin-bottom:36px;max-width:480px;}
+.hero-ctas{display:flex;gap:14px;flex-wrap:wrap;align-items:center}
+.hero-trust{display:flex;align-items:center;gap:20px;margin-top:36px;padding-top:28px;border-top:1px solid var(--border);}
+.hero-trust-item{display:flex;align-items:center;gap:8px;font-size:13px;color:var(--mid);font-weight:500;}
+.hero-trust-item .icon{width:28px;height:28px;background:var(--red-lt);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:14px;flex-shrink:0;}
+.hero-img{position:relative;overflow:hidden;}
+.hero-img img{width:100%;height:100%;object-fit:cover;}
+.hero-img-badge{position:absolute;bottom:32px;left:-16px;background:var(--white);border-radius:12px;padding:14px 18px;box-shadow:var(--shadow-lg);display:flex;align-items:center;gap:12px;}
+.hero-img-badge .big{font-family:'Lora',serif;font-size:28px;font-weight:700;color:var(--red);line-height:1}
+.hero-img-badge .small{font-size:12px;color:var(--mid);line-height:1.4}
+.trust-strip{background:var(--white);border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:32px;}
+.trust-strip-inner{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:repeat(4,1fr);gap:24px;}
+.trust-item{display:flex;align-items:center;gap:14px;padding:0 12px;}
+.trust-item:not(:last-child){border-right:1px solid var(--border);}
+.trust-icon{width:44px;height:44px;border-radius:10px;background:var(--red-lt);display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0;}
+.trust-text strong{display:block;font-size:14px;font-weight:600;color:var(--dark)}
+.trust-text span{font-size:12px;color:var(--muted)}
+.offer-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;margin-top:48px;}
+.offer-card{background:var(--white);border:1px solid var(--border);border-radius:12px;overflow:hidden;transition:all .25s;cursor:pointer;}
+.offer-card:hover{transform:translateY(-4px);box-shadow:var(--shadow-lg);border-color:var(--red)}
+.offer-card-img{height:160px;overflow:hidden;position:relative;}
+.offer-card-img img{width:100%;height:100%;object-fit:cover;transition:transform .4s}
+.offer-card:hover .offer-card-img img{transform:scale(1.05)}
+.offer-card-tag{position:absolute;top:12px;left:12px;background:var(--red);color:#fff;font-size:10px;font-weight:600;letter-spacing:.8px;text-transform:uppercase;padding:4px 10px;border-radius:4px;}
+.offer-card-body{padding:20px}
+.offer-card-body h3{font-family:'Lora',serif;font-size:16px;font-weight:600;color:var(--dark);margin-bottom:6px;}
+.offer-card-body p{font-size:13px;color:var(--mid);line-height:1.6;margin-bottom:16px}
+.offer-card-link{font-size:13px;font-weight:600;color:var(--red);display:flex;align-items:center;gap:4px;}
+.offer-card-link::after{content:'→';transition:transform .2s}
+.offer-card:hover .offer-card-link::after{transform:translateX(4px)}
+.product-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:48px;}
+.product-card{background:var(--white);border:1px solid var(--border);border-radius:12px;overflow:hidden;transition:all .25s;}
+.product-card:hover{transform:translateY(-4px);box-shadow:var(--shadow-lg)}
+.product-card-img{height:200px;overflow:hidden;position:relative;background:var(--cream-2);}
+.product-card-img img{width:100%;height:100%;object-fit:cover;transition:transform .4s}
+.product-card:hover .product-card-img img{transform:scale(1.06)}
+.product-badge{position:absolute;top:12px;right:12px;background:var(--yellow);color:var(--dark);font-size:10px;font-weight:700;padding:3px 8px;border-radius:4px;letter-spacing:.5px;}
+.product-card-body{padding:18px}
+.product-cat{font-size:11px;font-weight:600;color:var(--red);letter-spacing:.8px;text-transform:uppercase;margin-bottom:6px}
+.product-name{font-family:'Lora',serif;font-size:15px;font-weight:600;color:var(--dark);margin-bottom:6px;line-height:1.35}
+.product-desc{font-size:13px;color:var(--mid);line-height:1.6;margin-bottom:14px}
+.product-footer{display:flex;align-items:center;justify-content:space-between}
+.product-price{font-family:'Lora',serif;font-size:18px;font-weight:700;color:var(--red)}
+.btn-cart{background:var(--red);color:#fff;font-size:12px;font-weight:600;padding:7px 14px;border-radius:6px;transition:all .2s;cursor:pointer;border:none;}
+.btn-cart:hover{background:var(--red-dk)}
+.btn-cart.added{background:#1E7A4A}
+.story-section{background:var(--cream-2)}
+.story-grid{display:grid;grid-template-columns:1fr 1fr;gap:72px;align-items:center;margin-top:56px;}
+.story-img{position:relative;border-radius:16px;overflow:hidden;height:420px}
+.story-img img{width:100%;height:100%;object-fit:cover}
+.story-img-badge{position:absolute;bottom:24px;right:-20px;background:var(--red);color:#fff;border-radius:12px;padding:20px 24px;box-shadow:var(--shadow-lg);text-align:center;}
+.story-img-badge .num{font-family:'Lora',serif;font-size:36px;font-weight:700;line-height:1}
+.story-img-badge .txt{font-size:12px;opacity:.85;margin-top:4px}
+.story-quote{background:var(--white);border-left:4px solid var(--red);padding:18px 22px;border-radius:0 8px 8px 0;margin:24px 0;font-family:'Lora',serif;font-style:italic;color:var(--dark);font-size:15px;line-height:1.7;}
+.usp-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:28px;margin-top:48px;}
+.usp-card{background:var(--white);border:1px solid var(--border);border-radius:12px;padding:32px;transition:all .25s;}
+.usp-card:hover{border-color:var(--red);box-shadow:var(--shadow)}
+.usp-icon{width:52px;height:52px;border-radius:12px;background:var(--red-lt);display:flex;align-items:center;justify-content:center;font-size:24px;margin-bottom:20px;}
+.usp-card h3{font-family:'Lora',serif;font-size:18px;font-weight:600;color:var(--dark);margin-bottom:12px;}
+.usp-card p{font-size:14px;color:var(--mid);line-height:1.7}
+.location-section{background:var(--dark);color:#fff;overflow:hidden}
+.location-grid{display:grid;grid-template-columns:1fr 1fr;gap:0;min-height:360px;}
+.location-map{position:relative;overflow:hidden;min-height:300px}
+.location-map img{width:100%;height:100%;object-fit:cover;opacity:.85}
+.location-map-overlay{position:absolute;inset:0;background:linear-gradient(to right,rgba(46,36,32,.3),transparent);}
+.location-info{padding:56px 64px;display:flex;flex-direction:column;justify-content:center;}
+.location-info .section-label{color:var(--yellow)}
+.location-info .section-label::before{background:var(--yellow)}
+.location-detail{display:flex;gap:14px;margin-bottom:18px;align-items:flex-start}
+.location-detail .loc-icon{font-size:18px;flex-shrink:0;margin-top:2px}
+.location-detail p{font-size:15px;color:#C8B8A8;line-height:1.6}
+.location-detail strong{color:#fff;display:block;margin-bottom:2px}
+.location-ctas{display:flex;gap:12px;margin-top:32px;flex-wrap:wrap;}
+.btn-yellow{display:inline-flex;align-items:center;gap:8px;background:var(--yellow);color:var(--dark);font-family:'Source Sans 3',sans-serif;font-size:14px;font-weight:600;padding:13px 24px;border-radius:6px;transition:all .2s;cursor:pointer;border:none;}
+.btn-yellow:hover{background:#e6b930;transform:translateY(-1px)}
+.btn-outline-white{display:inline-flex;align-items:center;gap:8px;background:transparent;color:#fff;font-family:'Source Sans 3',sans-serif;font-size:14px;font-weight:600;padding:13px 24px;border-radius:6px;border:2px solid rgba(255,255,255,.3);transition:all .2s;cursor:pointer;}
+.btn-outline-white:hover{border-color:#fff;background:rgba(255,255,255,.08)}
+.footer{background:#1C1410;color:#C8B8A8}
+.footer-inner{max-width:1200px;margin:0 auto;padding:56px 32px 32px;}
+.footer-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:48px;padding-bottom:40px;border-bottom:1px solid #3A2E28;margin-bottom:28px;}
+.footer-brand .logo-row{display:flex;align-items:center;gap:10px;margin-bottom:16px}
+.footer-brand .logo-icon{width:36px;height:36px;background:var(--red);border-radius:6px;display:flex;align-items:center;justify-content:center;font-family:'Noto Serif SC',serif;font-size:16px;color:#fff;font-weight:700;}
+.footer-brand .logo-name{font-family:'Lora',serif;font-size:14px;font-weight:700;color:#FFFDF8}
+.footer-brand p{font-size:13px;line-height:1.7;color:#8A7A70;margin-bottom:16px}
+.footer-col h4{font-size:12px;font-weight:700;letter-spacing:1.2px;text-transform:uppercase;color:#FFFDF8;margin-bottom:18px}
+.footer-col a{display:block;font-size:13px;color:#8A7A70;margin-bottom:10px;transition:color .2s}
+.footer-col a:hover{color:var(--yellow)}
+.footer-bottom{display:flex;align-items:center;justify-content:space-between;font-size:12px;color:#5A4A40;flex-wrap:wrap;gap:12px;}
+.footer-bottom a{color:#5A4A40;transition:color .2s}
+.footer-bottom a:hover{color:#8A7A70}
+.shop-header{background:var(--cream-2);padding:48px 32px 0;border-bottom:1px solid var(--border);}
+.shop-header-inner{max-width:1200px;margin:0 auto}
+.breadcrumb{font-size:13px;color:var(--muted);margin-bottom:16px}
+.breadcrumb a{color:var(--mid);transition:color .2s}
+.breadcrumb a:hover{color:var(--red)}
+.breadcrumb span{margin:0 6px}
+.shop-header h1{font-family:'Lora',serif;font-size:36px;font-weight:700;color:var(--dark);margin-bottom:8px;}
+.shop-header p{font-size:15px;color:var(--mid);margin-bottom:32px}
+.filter-bar{display:flex;gap:8px;overflow-x:auto;scrollbar-width:none;}
+.filter-bar::-webkit-scrollbar{display:none}
+.filter-tab{white-space:nowrap;padding:10px 20px;border-radius:8px 8px 0 0;font-size:13px;font-weight:600;color:var(--mid);background:var(--cream-3);border:1px solid var(--border);border-bottom:none;cursor:pointer;transition:all .2s;flex-shrink:0;}
+.filter-tab:hover{color:var(--dark);background:var(--cream-2)}
+.filter-tab.active{background:var(--white);color:var(--red);border-color:var(--border);position:relative;}
+.filter-tab.active::after{content:'';position:absolute;bottom:-1px;left:0;right:0;height:2px;background:var(--white);}
+.shop-body{padding:48px 32px}
+.shop-body-inner{max-width:1200px;margin:0 auto}
+.shop-meta{display:flex;align-items:center;justify-content:space-between;margin-bottom:28px;flex-wrap:wrap;gap:12px;}
+.shop-count{font-size:14px;color:var(--mid)}
+.shop-count strong{color:var(--dark)}
+.sort-select{font-family:'Source Sans 3',sans-serif;font-size:13px;padding:8px 14px;border:1px solid var(--border);border-radius:6px;background:var(--white);color:var(--dark);cursor:pointer;outline:none;}
+.shop-product-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;}
+.load-more{display:flex;justify-content:center;margin-top:48px;}
+.contact-header{background:var(--cream-2);padding:56px 32px;border-bottom:1px solid var(--border);text-align:center;}
+.contact-header-inner{max-width:720px;margin:0 auto}
+.contact-header h1{font-family:'Lora',serif;font-size:40px;font-weight:700;color:var(--dark);margin-bottom:12px;}
+.contact-header p{font-size:16px;color:var(--mid);line-height:1.7}
+.contact-body{padding:64px 32px;background:var(--white)}
+.contact-body-inner{max-width:1200px;margin:0 auto}
+.contact-top-grid{display:grid;grid-template-columns:1fr 1.6fr;gap:40px;margin-bottom:64px;align-items:start;}
+.contact-info-card{background:var(--cream-2);border-radius:16px;overflow:hidden;border:1px solid var(--border);}
+.contact-info-card-header{background:var(--red);padding:28px;font-family:'Lora',serif;font-size:18px;font-weight:600;color:#fff;}
+.contact-info-card-header span{display:block;font-family:'Source Sans 3',sans-serif;font-size:13px;opacity:.8;margin-top:4px}
+.contact-info-body{padding:28px}
+.contact-detail{display:flex;gap:14px;margin-bottom:22px;align-items:flex-start}
+.contact-detail .c-icon{width:38px;height:38px;border-radius:8px;background:var(--red-lt);display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0;}
+.contact-detail h4{font-size:13px;font-weight:600;color:var(--dark);margin-bottom:3px}
+.contact-detail p{font-size:14px;color:var(--mid);line-height:1.6}
+.contact-divider{height:1px;background:var(--border);margin:20px 0}
+.map-container{border-radius:16px;overflow:hidden;border:1px solid var(--border);height:360px;background:var(--cream-3);display:flex;align-items:center;justify-content:center;position:relative;}
+.map-container img{width:100%;height:100%;object-fit:cover;position:absolute;inset:0;}
+.map-pin-overlay{position:absolute;display:flex;flex-direction:column;align-items:center;z-index:2;}
+.map-pin{width:48px;height:48px;background:var(--red);border-radius:50% 50% 50% 0;transform:rotate(-45deg);display:flex;align-items:center;justify-content:center;box-shadow:0 4px 16px rgba(139,26,26,.3);}
+.map-pin-inner{transform:rotate(45deg);color:#fff;font-size:20px;line-height:1;}
+.map-label{margin-top:12px;background:var(--white);border-radius:8px;padding:10px 16px;font-size:13px;font-weight:600;color:var(--dark);box-shadow:var(--shadow);text-align:center;}
+.map-label span{display:block;font-size:11px;color:var(--muted);font-weight:400;margin-top:2px}
+.form-section{background:var(--cream-2);border-radius:20px;padding:48px;border:1px solid var(--border);}
+.form-section h2{font-family:'Lora',serif;font-size:28px;font-weight:700;color:var(--dark);margin-bottom:8px;}
+.form-section .form-sub{font-size:15px;color:var(--mid);margin-bottom:36px}
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.form-group{display:flex;flex-direction:column;gap:6px}
+.form-group.full{grid-column:1/-1}
+.form-group label{font-size:13px;font-weight:600;color:var(--dark)}
+.form-group input,.form-group textarea{font-family:'Source Sans 3',sans-serif;font-size:15px;padding:12px 16px;border:1.5px solid var(--border);border-radius:8px;background:var(--white);color:var(--dark);transition:border-color .2s;outline:none;}
+.form-group input:focus,.form-group textarea:focus{border-color:var(--red);box-shadow:0 0 0 3px rgba(139,26,26,.08)}
+.form-group textarea{resize:vertical;min-height:120px}
+.form-footer{display:flex;align-items:center;justify-content:space-between;margin-top:8px;flex-wrap:wrap;gap:16px;grid-column:1/-1;}
+.form-privacy{font-size:12px;color:var(--muted)}
+.wa-banner{background:linear-gradient(135deg,#128C7E,#25D366);border-radius:16px;padding:32px 40px;display:flex;align-items:center;gap:24px;margin-top:40px;}
+.wa-banner-icon{font-size:48px;flex-shrink:0}
+.wa-banner-text h3{font-family:'Lora',serif;font-size:20px;font-weight:600;color:#fff;margin-bottom:6px}
+.wa-banner-text p{font-size:14px;color:rgba(255,255,255,.85);line-height:1.6}
+.btn-wa{margin-left:auto;flex-shrink:0;background:#fff;color:#128C7E;font-family:'Source Sans 3',sans-serif;font-size:14px;font-weight:700;padding:12px 24px;border-radius:8px;display:flex;align-items:center;gap:8px;transition:all .2s;white-space:nowrap;cursor:pointer;border:none;}
+.btn-wa:hover{transform:translateY(-1px);box-shadow:0 4px 16px rgba(0,0,0,.15)}
+.toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%) translateY(80px);background:var(--dark);color:#fff;border-radius:10px;padding:14px 24px;font-size:14px;font-weight:500;box-shadow:0 8px 32px rgba(0,0,0,.25);z-index:9998;transition:transform .3s ease;display:flex;align-items:center;gap:10px;white-space:nowrap;}
+.toast.show{transform:translateX(-50%) translateY(0)}
+.wa-float{position:fixed;bottom:28px;right:28px;z-index:888;width:52px;height:52px;border-radius:50%;background:#25D366;display:flex;align-items:center;justify-content:center;font-size:26px;box-shadow:0 4px 20px rgba(37,211,102,.4);cursor:pointer;transition:transform .2s;border:none;}
+.wa-float:hover{transform:scale(1.1)}
+.wa-float-tip{position:absolute;right:calc(100% + 12px);bottom:50%;transform:translateY(50%);background:var(--dark);color:#fff;font-size:12px;font-weight:500;padding:6px 12px;border-radius:6px;white-space:nowrap;opacity:0;pointer-events:none;transition:opacity .2s;}
+.wa-float:hover .wa-float-tip{opacity:1}
+
+@media(max-width:768px){
+  :root{--nav-h:60px}
+  .nav-links,.nav-icons{display:none}
+  .hamburger{display:flex}
+  .announce-bar{font-size:11px;padding:7px 12px}
+  .hide-mob{display:none}
+  .hero{grid-template-columns:1fr}
+  .hero-img{height:240px;order:-1}
+  .hero-img-badge,.story-img-badge{display:none}
+  .hero-content{padding:32px 20px}
+  .hero-ctas{flex-direction:column}
+  .hero-ctas .btn-primary,.hero-ctas .btn-outline{width:100%;justify-content:center}
+  .hero-trust{flex-wrap:wrap;gap:12px}
+  .trust-strip-inner{grid-template-columns:1fr 1fr}
+  .trust-item{border-right:none!important}
+  .offer-grid{grid-template-columns:1fr 1fr}
+  .product-grid,.usp-grid{grid-template-columns:1fr}
+  .section{padding:48px 20px}
+  .story-grid{grid-template-columns:1fr;gap:32px}
+  .location-grid{grid-template-columns:1fr}
+  .location-map{height:220px}
+  .location-info{padding:36px 24px}
+  .footer-grid{grid-template-columns:1fr 1fr;gap:32px}
+  .footer-brand{grid-column:1/-1}
+  .shop-product-grid{grid-template-columns:1fr 1fr}
+  .contact-top-grid{grid-template-columns:1fr}
+  .form-grid{grid-template-columns:1fr}
+  .form-section{padding:24px 16px}
+  .wa-banner{flex-direction:column;text-align:center}
+  .btn-wa{margin-left:0}
+  .wa-float .wa-float-tip{display:none}
+  .shop-header,.shop-body,.contact-header,.contact-body{padding-left:16px;padding-right:16px}
+}
+.frame-outer.mobile-mode .nav-links,.frame-outer.mobile-mode .nav-icons{display:none}
+.frame-outer.mobile-mode .hamburger{display:flex}
+.frame-outer.mobile-mode .announce-bar{font-size:11px;padding:7px 12px}
+.frame-outer.mobile-mode .hide-mob{display:none}
+.frame-outer.mobile-mode .hero{grid-template-columns:1fr}
+.frame-outer.mobile-mode .hero-img{height:220px;order:-1}
+.frame-outer.mobile-mode .hero-img-badge,.frame-outer.mobile-mode .story-img-badge{display:none}
+.frame-outer.mobile-mode .hero-content{padding:28px 20px}
+.frame-outer.mobile-mode .hero-ctas{flex-direction:column}
+.frame-outer.mobile-mode .hero-ctas .btn-primary,.frame-outer.mobile-mode .hero-ctas .btn-outline{width:100%;justify-content:center}
+.frame-outer.mobile-mode .hero-trust{flex-wrap:wrap;gap:12px}
+.frame-outer.mobile-mode .trust-strip-inner{grid-template-columns:1fr 1fr}
+.frame-outer.mobile-mode .trust-item{border-right:none!important}
+.frame-outer.mobile-mode .offer-grid{grid-template-columns:1fr 1fr}
+.frame-outer.mobile-mode .product-grid,.frame-outer.mobile-mode .usp-grid{grid-template-columns:1fr}
+.frame-outer.mobile-mode .section{padding:40px 16px}
+.frame-outer.mobile-mode .story-grid{grid-template-columns:1fr;gap:24px}
+.frame-outer.mobile-mode .location-grid{grid-template-columns:1fr}
+.frame-outer.mobile-mode .location-map{height:200px}
+.frame-outer.mobile-mode .location-info{padding:28px 20px}
+.frame-outer.mobile-mode .footer-grid{grid-template-columns:1fr 1fr;gap:24px}
+.frame-outer.mobile-mode .footer-brand{grid-column:1/-1}
+.frame-outer.mobile-mode .shop-product-grid{grid-template-columns:1fr 1fr}
+.frame-outer.mobile-mode .contact-top-grid{grid-template-columns:1fr}
+.frame-outer.mobile-mode .form-grid{grid-template-columns:1fr}
+.frame-outer.mobile-mode .form-section{padding:24px 16px}
+.frame-outer.mobile-mode .wa-banner{flex-direction:column;text-align:center}
+.frame-outer.mobile-mode .btn-wa{margin-left:0}
+.frame-outer.mobile-mode .wa-float{display:none}
+.frame-outer.mobile-mode .shop-header,.frame-outer.mobile-mode .shop-body,.frame-outer.mobile-mode .contact-header,.frame-outer.mobile-mode .contact-body{padding-left:16px;padding-right:16px}
+</style>
+</head>
+<body>
+
+<div class="toolbar">
+  <span class="toolbar-label">🏥 Jen Seng Medical Hall</span>
+  <div class="toolbar-sep"></div>
+  <button class="pp-btn active" onclick="showPage('home',this)">Homepage</button>
+  <button class="pp-btn" onclick="showPage('shop',this)">Shop</button>
+  <button class="pp-btn" onclick="showPage('contact',this)">Contact Us</button>
+  <div class="toolbar-sep"></div>
+  <button class="mob-btn" id="mobToggle" onclick="toggleMobile()">📱 Mobile View</button>
+</div>
+
+<div class="frame-outer" id="frameOuter">
+<div class="frame-wrap" id="frameWrap">
+
+<div class="mobile-nav-overlay" id="mobileOverlay" onclick="closeMobileNav()"></div>
+<div class="mobile-nav-drawer" id="mobileDrawer">
+  <div class="mobile-nav-header">
+    <div class="nav-logo">
+      <div class="nav-logo-icon">回春</div>
+      <div class="nav-logo-text"><span class="name">Jen Seng</span><span class="sub">Medical Hall</span></div>
+    </div>
+    <button class="mobile-nav-close" onclick="closeMobileNav()">✕</button>
+  </div>
+  <div class="mobile-nav-links">
+    <a href="#" id="mob-home" class="active" onclick="showPage('home');closeMobileNav();return false">🏠 &nbsp;Home</a>
+    <a href="#" id="mob-shop" onclick="showPage('shop');closeMobileNav();return false">🛍️ &nbsp;Shop</a>
+    <a href="#" id="mob-contact" onclick="showPage('contact');closeMobileNav();return false">📍 &nbsp;Contact Us</a>
+  </div>
+  <div class="mobile-nav-contact">
+    <p>📍 Blk 264 Serangoon Central, #01-231</p>
+    <p>🕐 Mon – Sun: 9am – 5pm</p>
+    <p style="margin-top:12px"><a href="#" style="color:var(--red);font-weight:600" onclick="showPage('contact');closeMobileNav();return false">Get Directions →</a></p>
+  </div>
+</div>
+
+<div class="announce-bar">
+  🚚&nbsp; Free delivery on orders above $[TBD]
+  <span class="hide-mob">·</span><span class="hide-mob">Est. 1993 · Traditional Chinese Medicine</span>
+  &nbsp;·&nbsp; Serangoon Central
+</div>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <div class="nav-logo">
+      <div class="nav-logo-icon">回春</div>
+      <div class="nav-logo-text">
+        <span class="name">Jen Seng Medical Hall</span>
+        <span class="sub">Traditional Chinese Medicine · Est. 1993</span>
+      </div>
+    </div>
+    <div class="nav-links">
+      <a href="#" id="nav-home" class="active" onclick="showPage('home');return false">Home</a>
+      <a href="#" id="nav-shop" onclick="showPage('shop');return false">Shop</a>
+      <a href="#" id="nav-contact" onclick="showPage('contact');return false">Contact Us</a>
+    </div>
+    <div class="nav-icons">
+      <button class="nav-icon-btn" title="Search">🔍</button>
+      <div class="cart-wrap">
+        <button class="nav-icon-btn" title="Cart" onclick="showToast('🛒 2 items in your cart')">🛒</button>
+        <div class="cart-dot">2</div>
+      </div>
+    </div>
+    <button class="hamburger" onclick="openMobileNav()">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- ══ HOMEPAGE ══════════════════════════════════════════ -->
+<div class="page active" id="page-home">
+
+<section class="hero">
+  <div class="hero-content">
+    <div class="hero-eyebrow">✦ Est. 1993 · Serangoon Central</div>
+    <h1 class="hero-title">Rooted in <em>Tradition.</em><br>Trusted Since 1993.</h1>
+    <p class="hero-subtitle">Singapore's trusted Chinese medical hall for herbal remedies, tonics, and everyday wellness — now available online, delivered to your door.</p>
+    <div class="hero-ctas">
+      <a href="#" class="btn-primary" onclick="showPage('shop');return false">Shop Now →</a>
+      <a href="#" class="btn-outline" onclick="showPage('contact');return false">Visit Our Store</a>
+    </div>
+    <div class="hero-trust">
+      <div class="hero-trust-item"><div class="icon">🌿</div>Traditional Herbs</div>
+      <div class="hero-trust-item"><div class="icon">⭐</div>30+ Years</div>
+      <div class="hero-trust-item"><div class="icon">🚚</div>Online Delivery</div>
+    </div>
+  </div>
+  <div class="hero-img">
+    <img src="https://images.unsplash.com/photo-1512069772995-ec65ed45afd6?w=900&q=85" alt="Traditional Chinese herbs">
+    <div class="hero-img-badge">
+      <div>
+        <div class="big">30+</div>
+        <div class="small">Years of<br>trusted care</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="trust-strip">
+  <div class="trust-strip-inner">
+    <div class="trust-item"><div class="trust-icon">⭐</div><div class="trust-text"><strong>30+ Years Experience</strong><span>Serving Singapore since 1993</span></div></div>
+    <div class="trust-item"><div class="trust-icon">🫶</div><div class="trust-text"><strong>Personalised Advice</strong><span>One-on-one TCM guidance</span></div></div>
+    <div class="trust-item"><div class="trust-icon">🌿</div><div class="trust-text"><strong>Wide Product Range</strong><span>Herbs, tonics & premium remedies</span></div></div>
+    <div class="trust-item"><div class="trust-icon">🏪</div><div class="trust-text"><strong>Family-Owned Business</strong><span>A neighbourhood institution</span></div></div>
+  </div>
+</div>
+
+<section class="section" style="background:var(--cream)">
+  <div class="section-inner">
+    <div class="text-center">
+      <div class="section-label">Browse by Need</div>
+      <h2 class="section-title">Traditional Remedies for <em style="color:var(--red);font-style:normal">Everyday Wellness</em></h2>
+      <p class="section-sub">From time-honoured loose herbs to premium tonics — find what your body needs, guided by decades of traditional expertise.</p>
+    </div>
+    <div class="offer-grid">
+      <div class="offer-card" onclick="showPage('shop');return false">
+        <div class="offer-card-img"><img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=500&q=80" alt="Herbal Remedies" loading="lazy"><span class="offer-card-tag">Popular</span></div>
+        <div class="offer-card-body"><h3>Herbal Remedies</h3><p>Immunity boosters, heatiness relief, detox teas and seasonal blends.</p><div class="offer-card-link">Shop Herbal Remedies</div></div>
+      </div>
+      <div class="offer-card" onclick="showPage('shop');return false">
+        <div class="offer-card-img"><img src="https://images.unsplash.com/photo-1611070964632-60dee62ba00b?w=500&q=80" alt="Tonics and Supplements" loading="lazy"></div>
+        <div class="offer-card-body"><h3>Tonics &amp; Supplements</h3><p>Bird's nest, cordyceps, ginseng and premium vitality tonics.</p><div class="offer-card-link">Shop Tonics</div></div>
+      </div>
+      <div class="offer-card" onclick="showPage('shop');return false">
+        <div class="offer-card-img"><img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=500&q=80" alt="Confinement Care" loading="lazy"><span class="offer-card-tag">Speciality</span></div>
+        <div class="offer-card-body"><h3>Confinement Care</h3><p>Post-natal herbal soups, tonics and packages for new mothers.</p><div class="offer-card-link">Shop Confinement</div></div>
+      </div>
+      <div class="offer-card" onclick="showPage('shop');return false">
+        <div class="offer-card-img"><img src="https://images.unsplash.com/photo-1563205764-cd984df2a2a4?w=500&q=80" alt="Dried Herbs" loading="lazy"></div>
+        <div class="offer-card-body"><h3>Dried Herbs &amp; Ingredients</h3><p>Dang Gui, Lingzhi, raw herbs and quality dried ingredients.</p><div class="offer-card-link">Shop Ingredients</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" style="background:var(--white)">
+  <div class="section-inner">
+    <div class="text-center">
+      <div class="section-label">Bestsellers</div>
+      <h2 class="section-title">Our Most-Loved <em style="color:var(--red);font-style:normal">Herbal Remedies</em></h2>
+      <p class="section-sub">Tried, trusted and recommended by our customers for over three decades.</p>
+    </div>
+    <div class="product-grid" id="home-products"></div>
+    <div style="text-align:center;margin-top:40px">
+      <a href="#" class="btn-outline" onclick="showPage('shop');return false">View All Products →</a>
+    </div>
+  </div>
+</section>
+
+<section class="section story-section">
+  <div class="section-inner">
+    <div class="story-grid">
+      <div class="story-img">
+        <img src="https://images.unsplash.com/photo-1555636222-cae831e670b3?w=700&q=80" alt="Jen Seng store">
+        <div class="story-img-badge"><div class="num">1993</div><div class="txt">Est. in<br>Serangoon</div></div>
+      </div>
+      <div class="story-text">
+        <div class="section-label">Our Heritage</div>
+        <h2 class="section-title">A Family Tradition Since 1993</h2>
+        <p class="section-sub">Our story began when two sisters and a spouse opened a small traditional medicine hall in Serangoon — full of heart, herbs, and the belief that good health starts with care.</p>
+        <div class="story-quote">"Every jar of herbs, every remedy, and every conversation carried the warmth of family and the belief that good health starts with care."</div>
+        <p class="section-sub">Through three decades and two relocations, the family's promise has never changed: honest remedies, friendly service, and care that comes from the heart.</p>
+        <div style="margin-top:28px"><a href="#" class="btn-primary btn-sm" onclick="showToast('About Us page coming soon in Phase 2!');return false">Read Our Full Story →</a></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" style="background:var(--white)">
+  <div class="section-inner">
+    <div class="text-center">
+      <div class="section-label">Why Choose Us</div>
+      <h2 class="section-title">Why Thousands of Singaporeans <em style="color:var(--red);font-style:normal">Trust Jen Seng</em></h2>
+    </div>
+    <div class="usp-grid">
+      <div class="usp-card"><div class="usp-icon">🫶</div><h3>Personalised Advice</h3><p>One-on-one guidance from experienced TCM practitioners — tailored to your specific health needs, symptoms, and lifestyle.</p></div>
+      <div class="usp-card"><div class="usp-icon">🌿</div><h3>Wide Product Range</h3><p>From loose herbs and ginseng to bird's nest, cordyceps, medicated oils and full confinement packages — everything under one roof.</p></div>
+      <div class="usp-card"><div class="usp-icon">🏪</div><h3>Trusted Since 1993</h3><p>Over 30 years serving Serangoon Central — a neighbourhood institution built on honest remedies and care that goes beyond the transaction.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="location-section">
+  <div class="location-grid">
+    <div class="location-map">
+      <img src="https://images.unsplash.com/photo-1569144157591-c60f3f82f137?w=700&q=75" alt="Serangoon Central">
+      <div class="location-map-overlay"></div>
+    </div>
+    <div class="location-info">
+      <div class="section-label">Find Us</div>
+      <h2 class="section-title" style="color:#fff;margin-bottom:28px">Find Us at<br><em style="color:var(--yellow);font-style:normal">Serangoon Central</em></h2>
+      <div class="location-detail"><span class="loc-icon">📍</span><p><strong>Address</strong>Blk 264 Serangoon Central, #01-231, Singapore 550264</p></div>
+      <div class="location-detail"><span class="loc-icon">🕐</span><p><strong>Opening Hours</strong>Monday to Sunday: 9:00am – 5:00pm</p></div>
+      <div class="location-detail"><span class="loc-icon">✉️</span><p><strong>Email</strong>jensengserangoon@outlook.com</p></div>
+      <div class="location-ctas">
+        <button class="btn-yellow" onclick="showPage('contact');return false">Get Directions →</button>
+        <button class="btn-outline-white" onclick="showPage('contact');return false">Contact Us</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="logo-row"><div class="logo-icon">回春</div><div class="logo-name">Jen Seng Medical Hall</div></div>
+        <p>A trusted traditional Chinese medicine hall serving Singapore since 1993. Personalised advice, quality herbs, and care from the heart.</p>
+      </div>
+      <div class="footer-col"><h4>Quick Links</h4><a href="#" onclick="showPage('home');return false">Home</a><a href="#" onclick="showPage('shop');return false">Shop</a><a href="#" onclick="showPage('contact');return false">Contact Us</a><a href="#" onclick="showToast('Blog coming in Phase 2')">Blog</a><a href="#" onclick="showToast('About Us coming in Phase 2')">About Us</a></div>
+      <div class="footer-col"><h4>Categories</h4><a href="#" onclick="showPage('shop');return false">Herbal Remedies</a><a href="#" onclick="showPage('shop');return false">Tonics &amp; Supplements</a><a href="#" onclick="showPage('shop');return false">Dried Herbs &amp; Ingredients</a><a href="#" onclick="showPage('shop');return false">Confinement Care</a></div>
+      <div class="footer-col"><h4>Contact</h4><a href="#">jensengserangoon@outlook.com</a><a href="#">Blk 264, #01-231, S550264</a><a href="#">Mon – Sun: 9am – 5pm</a><div style="margin-top:16px"><a href="https://www.facebook.com/jensengmedicalhall/" target="_blank" style="color:var(--yellow);font-weight:600">Facebook →</a></div></div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2025 Jen Seng Medical Hall · All Rights Reserved</span>
+      <div style="display:flex;gap:20px"><a href="#">Privacy Policy</a><a href="#">Terms &amp; Conditions</a><a href="#">Return &amp; Refund Policy</a></div>
+    </div>
+  </div>
+</footer>
+</div>
+
+<!-- ══ SHOP PAGE ═════════════════════════════════════════ -->
+<div class="page" id="page-shop">
+<div class="shop-header">
+  <div class="shop-header-inner">
+    <div class="breadcrumb"><a href="#" onclick="showPage('home');return false">Home</a><span>›</span>Shop</div>
+    <h1>Our Products</h1>
+    <p>Browse our range of traditional Chinese herbs, tonics, and wellness remedies — curated from 30 years of expertise.</p>
+    <div class="filter-bar">
+      <button class="filter-tab active" onclick="filterProducts('all',this)">All Products</button>
+      <button class="filter-tab" onclick="filterProducts('herbal',this)">Herbal Remedies</button>
+      <button class="filter-tab" onclick="filterProducts('tonics',this)">Tonics &amp; Supplements</button>
+      <button class="filter-tab" onclick="filterProducts('herbs',this)">Dried Herbs &amp; Ingredients</button>
+      <button class="filter-tab" onclick="filterProducts('ready',this)">Ready-to-Consume</button>
+      <button class="filter-tab" onclick="filterProducts('confinement',this)">Confinement Care</button>
+    </div>
+  </div>
+</div>
+<div class="shop-body">
+  <div class="shop-body-inner">
+    <div class="shop-meta">
+      <div class="shop-count" id="shopCount">Showing <strong>12</strong> products</div>
+      <select class="sort-select"><option>Sort by: Featured</option><option>Price: Low to High</option><option>Price: High to Low</option><option>Newest First</option></select>
+    </div>
+    <div class="shop-product-grid" id="shopGrid"></div>
+    <div class="load-more"><button class="btn-outline" onclick="showToast('Loading more products…')">Load More Products</button></div>
+  </div>
+</div>
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-grid">
+      <div class="footer-brand"><div class="logo-row"><div class="logo-icon">回春</div><div class="logo-name">Jen Seng Medical Hall</div></div><p>Traditional Chinese medicine hall serving Singapore since 1993.</p></div>
+      <div class="footer-col"><h4>Quick Links</h4><a href="#" onclick="showPage('home');return false">Home</a><a href="#" onclick="showPage('shop');return false">Shop</a><a href="#" onclick="showPage('contact');return false">Contact Us</a></div>
+      <div class="footer-col"><h4>Categories</h4><a href="#">Herbal Remedies</a><a href="#">Tonics &amp; Supplements</a><a href="#">Dried Herbs</a><a href="#">Confinement Care</a></div>
+      <div class="footer-col"><h4>Contact</h4><a href="#">jensengserangoon@outlook.com</a><a href="#">Blk 264, #01-231</a><a href="#">Mon – Sun: 9am – 5pm</a></div>
+    </div>
+    <div class="footer-bottom"><span>© 2025 Jen Seng Medical Hall</span><div style="display:flex;gap:20px"><a href="#">Privacy Policy</a><a href="#">Terms &amp; Conditions</a></div></div>
+  </div>
+</footer>
+</div>
+
+<!-- ══ CONTACT PAGE ══════════════════════════════════════ -->
+<div class="page" id="page-contact">
+<div class="contact-header">
+  <div class="contact-header-inner">
+    <div class="section-label" style="justify-content:center">Get in Touch</div>
+    <h1>We'd Love to Hear From You</h1>
+    <p>Whether you have a question about our products, need advice on a remedy, or just want to know more — we're here to help.</p>
+  </div>
+</div>
+<div class="contact-body">
+  <div class="contact-body-inner">
+    <div class="contact-top-grid">
+      <div class="contact-info-card">
+        <div class="contact-info-card-header">Contact Information<span>Visit us or send us a message</span></div>
+        <div class="contact-info-body">
+          <div class="contact-detail"><div class="c-icon">📍</div><div><h4>Store Address</h4><p>Blk 264 Serangoon Central<br>#01-231, Singapore 550264</p></div></div>
+          <div class="contact-divider"></div>
+          <div class="contact-detail"><div class="c-icon">🕐</div><div><h4>Opening Hours</h4><p>Monday to Sunday<br>9:00am – 5:00pm</p></div></div>
+          <div class="contact-divider"></div>
+          <div class="contact-detail"><div class="c-icon">✉️</div><div><h4>Email</h4><p>jensengserangoon@outlook.com</p></div></div>
+          <div class="contact-divider"></div>
+          <button class="btn-primary" style="width:100%;justify-content:center;margin-top:4px" onclick="showToast('Opening Google Maps…')">📍 Get Directions</button>
+        </div>
+      </div>
+      <div class="map-container">
+        <img src="https://images.unsplash.com/photo-1569144157591-c60f3f82f137?w=800&q=75" alt="Serangoon Central map area">
+        <div class="map-pin-overlay">
+          <div class="map-pin"><div class="map-pin-inner">📍</div></div>
+          <div class="map-label">Jen Seng Medical Hall<span>Blk 264 Serangoon Central #01-231</span></div>
+        </div>
+      </div>
+    </div>
+    <div class="form-section">
+      <h2>Send Us an Enquiry</h2>
+      <p class="form-sub">Fill in the form below and we'll get back to you as soon as possible — usually within 1 business day.</p>
+      <div class="form-grid">
+        <div class="form-group"><label>Your Name *</label><input type="text" placeholder="e.g. Tan Wei Ming" id="fname"></div>
+        <div class="form-group"><label>Email Address *</label><input type="email" placeholder="e.g. weiming@email.com" id="femail"></div>
+        <div class="form-group full"><label>Subject</label><input type="text" placeholder="e.g. Enquiry about confinement packages" id="fsubject"></div>
+        <div class="form-group full"><label>Message *</label><textarea placeholder="Tell us how we can help you…" id="fmessage"></textarea></div>
+        <div class="form-footer">
+          <p class="form-privacy">🔒 Your information is kept private and used only to respond to your enquiry.</p>
+          <button class="btn-primary" onclick="submitForm()">Send Message →</button>
+        </div>
+      </div>
+    </div>
+    <div class="wa-banner">
+      <div class="wa-banner-icon">💬</div>
+      <div class="wa-banner-text"><h3>Prefer to Chat?</h3><p>Message us on WhatsApp for quick questions about products, stock availability, or personalised recommendations.</p></div>
+      <button class="btn-wa" onclick="showToast('WhatsApp number TBD — optional feature')">💬 Chat on WhatsApp</button>
+    </div>
+  </div>
+</div>
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-grid">
+      <div class="footer-brand"><div class="logo-row"><div class="logo-icon">回春</div><div class="logo-name">Jen Seng Medical Hall</div></div><p>Traditional Chinese medicine hall serving Singapore since 1993.</p></div>
+      <div class="footer-col"><h4>Quick Links</h4><a href="#" onclick="showPage('home');return false">Home</a><a href="#" onclick="showPage('shop');return false">Shop</a><a href="#" onclick="showPage('contact');return false">Contact Us</a></div>
+      <div class="footer-col"><h4>Categories</h4><a href="#">Herbal Remedies</a><a href="#">Tonics &amp; Supplements</a><a href="#">Dried Herbs</a><a href="#">Confinement Care</a></div>
+      <div class="footer-col"><h4>Contact</h4><a href="#">jensengserangoon@outlook.com</a><a href="#">Blk 264, #01-231</a><a href="#">Mon – Sun: 9am – 5pm</a></div>
+    </div>
+    <div class="footer-bottom"><span>© 2025 Jen Seng Medical Hall</span><div style="display:flex;gap:20px"><a href="#">Privacy Policy</a><a href="#">Terms &amp; Conditions</a></div></div>
+  </div>
+</footer>
+</div>
+
+<div class="toast" id="toast"><span id="toast-icon">✓</span><span id="toast-msg"></span></div>
+<button class="wa-float" onclick="showToast('WhatsApp number TBD — optional feature')">💬<span class="wa-float-tip">Chat with us on WhatsApp</span></button>
+
+</div></div>
+
+<script>
+const products=[
+  {id:1,cat:'herbal',name:'Immunity Herbal Tea',desc:'A warming blend to strengthen daily immunity and support respiratory health.',price:'$12.90',img:'https://images.unsplash.com/photo-1556679343-c7306c1976bc?w=400&q=75',badge:'Bestseller',catLabel:'Herbal Remedies'},
+  {id:2,cat:'tonics',name:'Dang Gui Tonic',desc:'Classic Angelica root tonic to nourish blood, support circulation and vitality.',price:'$28.90',img:'https://images.unsplash.com/photo-1512069772995-ec65ed45afd6?w=400&q=75',badge:null,catLabel:'Tonics'},
+  {id:3,cat:'tonics',name:'Lingzhi Capsules',desc:'Premium Reishi mushroom extract — supports immunity, sleep and longevity.',price:'$45.00',img:'https://images.unsplash.com/photo-1607619056574-7b8d3ee536b2?w=400&q=75',badge:'Premium',catLabel:'Tonics'},
+  {id:4,cat:'tonics',name:"Bird's Nest (6-pack)",desc:"Premium grade bird's nest for energy, skin health and recovery.",price:'$68.00',img:'https://images.unsplash.com/photo-1563805042-7684c019e1cb?w=400&q=75',badge:'Premium',catLabel:'Tonics'},
+  {id:5,cat:'herbal',name:'Cordyceps Flower',desc:'Prized cordyceps to boost energy, stamina and support kidney function.',price:'$38.50',img:'https://images.unsplash.com/photo-1611070964632-60dee62ba00b?w=400&q=75',badge:null,catLabel:'Herbal Remedies'},
+  {id:6,cat:'ready',name:'Ginger Honey Blend',desc:'Soothing ginger and honey tea for digestion, colds and daily warmth.',price:'$15.90',img:'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=400&q=75',badge:null,catLabel:'Ready-to-Consume'},
+  {id:7,cat:'herbs',name:'Dang Gui (Whole Root)',desc:"Dried Angelica sinensis root — a staple of traditional women's health tonics.",price:'$22.00',img:'https://images.unsplash.com/photo-1563205764-cd984df2a2a4?w=400&q=75',badge:null,catLabel:'Dried Herbs'},
+  {id:8,cat:'herbal',name:'Heatiness Relief Tea',desc:'Cool-down herbal tea blend for sore throat, dry cough and body heatiness.',price:'$9.90',img:'https://images.unsplash.com/photo-1556679343-c7306c1976bc?w=400&q=75',badge:'Popular',catLabel:'Herbal Remedies'},
+  {id:9,cat:'confinement',name:'Confinement Herb Pack',desc:'Complete 28-day herbal soup and tonic package for post-natal recovery.',price:'$138.00',img:'https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=400&q=75',badge:'Speciality',catLabel:'Confinement Care'},
+  {id:10,cat:'herbs',name:'Goji Berries (100g)',desc:'Premium wolfberries for eye health, immunity and antioxidant support.',price:'$8.50',img:'https://images.unsplash.com/photo-1563205764-cd984df2a2a4?w=400&q=75',badge:null,catLabel:'Dried Herbs'},
+  {id:11,cat:'tonics',name:'Ginseng Root Slice',desc:'Korean red ginseng slices — to boost energy, focus and resilience.',price:'$56.00',img:'https://images.unsplash.com/photo-1607619056574-7b8d3ee536b2?w=400&q=75',badge:'Premium',catLabel:'Tonics'},
+  {id:12,cat:'ready',name:'Chrysanthemum Tea',desc:'Classic cooling chrysanthemum tea for eye health and daily refreshment.',price:'$7.90',img:'https://images.unsplash.com/photo-1556679343-c7306c1976bc?w=400&q=75',badge:null,catLabel:'Ready-to-Consume'},
+];
+
+function card(p){
+  return`<div class="product-card"><div class="product-card-img"><img src="${p.img}" alt="${p.name}" loading="lazy">${p.badge?`<span class="product-badge">${p.badge}</span>`:''}</div><div class="product-card-body"><div class="product-cat">${p.catLabel}</div><div class="product-name">${p.name}</div><div class="product-desc">${p.desc}</div><div class="product-footer"><div class="product-price">${p.price}</div><button class="btn-cart" onclick="addToCart(this,'${p.name}')">Add to Cart</button></div></div></div>`;
+}
+
+document.getElementById('home-products').innerHTML=products.slice(0,6).map(card).join('');
+renderShop(products);
+
+function renderShop(list){
+  document.getElementById('shopGrid').innerHTML=list.map(card).join('');
+  document.getElementById('shopCount').innerHTML=`Showing <strong>${list.length}</strong> products`;
+}
+function filterProducts(cat,btn){
+  document.querySelectorAll('.filter-tab').forEach(t=>t.classList.remove('active'));
+  btn.classList.add('active');
+  renderShop(cat==='all'?products:products.filter(p=>p.cat===cat));
+}
+function addToCart(btn,name){
+  btn.textContent='✓ Added';btn.classList.add('added');
+  showToast('🛒 '+name+' added to cart!');
+  setTimeout(()=>{btn.textContent='Add to Cart';btn.classList.remove('added');},2500);
+}
+function showPage(page,toolbarBtn){
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+  document.getElementById('page-'+page).classList.add('active');
+  document.querySelectorAll('.pp-btn').forEach(b=>b.classList.remove('active'));
+  if(toolbarBtn) toolbarBtn.classList.add('active');
+  else document.querySelectorAll('.pp-btn').forEach(b=>{
+    const t=b.textContent.toLowerCase();
+    if((page==='home'&&t.includes('home'))||(page==='shop'&&t.includes('shop'))||(page==='contact'&&t.includes('contact')))b.classList.add('active');
+  });
+  ['home','shop','contact'].forEach(p=>{
+    const n=document.getElementById('nav-'+p);if(n)n.classList.toggle('active',p===page);
+    const m=document.getElementById('mob-'+p);if(m)m.classList.toggle('active',p===page);
+  });
+  document.getElementById('frameWrap').scrollTop=0;
+}
+function openMobileNav(){
+  document.getElementById('mobileDrawer').classList.add('open');
+  const o=document.getElementById('mobileOverlay');o.style.display='block';
+  setTimeout(()=>o.classList.add('open'),10);
+}
+function closeMobileNav(){
+  document.getElementById('mobileDrawer').classList.remove('open');
+  const o=document.getElementById('mobileOverlay');o.classList.remove('open');
+  setTimeout(()=>o.style.display='none',300);
+}
+function toggleMobile(){
+  const outer=document.getElementById('frameOuter');
+  const btn=document.getElementById('mobToggle');
+  outer.classList.toggle('mobile-mode');
+  btn.classList.toggle('active');
+  btn.textContent=outer.classList.contains('mobile-mode')?'🖥️ Desktop View':'📱 Mobile View';
+  document.getElementById('frameWrap').scrollTop=0;
+}
+let toastT;
+function showToast(msg){
+  const t=document.getElementById('toast');
+  document.getElementById('toast-msg').textContent=msg;
+  t.classList.add('show');clearTimeout(toastT);
+  toastT=setTimeout(()=>t.classList.remove('show'),2600);
+}
+function submitForm(){
+  const n=document.getElementById('fname').value.trim();
+  const e=document.getElementById('femail').value.trim();
+  const m=document.getElementById('fmessage').value.trim();
+  if(!n||!e||!m){showToast('⚠️ Please fill in all required fields');return;}
+  showToast('✉️ Message sent! We\'ll be in touch soon.');
+  ['fname','femail','fsubject','fmessage'].forEach(id=>document.getElementById(id).value='');
+}
+</script>
+</body>
+</html>

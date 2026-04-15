@@ -1,0 +1,23 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "ai-zippy/team-profiles",
+	"version": "1.0.0",
+	"title": "Team Profiles",
+	"category": "ai-zippy",
+	"icon": "groups",
+	"description": "Showcase founders or team members",
+	"attributes": {
+		"members": {
+			"type": "array",
+			"default": [
+				{ "name": "Sister A", "role": "Co-Founder", "bio": "Over 40 years of experience in herbal selection and TCM consultation.", "imageUrl": "" },
+				{ "name": "Sister B", "role": "Co-Founder", "bio": "Specializing in premium tonics and traditional wellness remedies.", "imageUrl": "" }
+			]
+		}
+	},
+	"editorScript": "file:./index.js",
+	"editorStyle": "file:./index.css",
+	"style": "file:./style-index.css",
+	"render": "file:./render.php"
+}

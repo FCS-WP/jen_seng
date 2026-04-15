@@ -1,0 +1,31 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "ai-zippy/trust-strip",
+	"version": "1.0.0",
+	"title": "Trust Strip",
+	"category": "ai-zippy",
+	"icon": "shield",
+	"description": "Horizontal strip with trust items (icon, title, sub).",
+	"supports": {
+		"html": false,
+		"align": ["wide", "full"],
+		"spacing": { "margin": true, "padding": true }
+	},
+	"attributes": {
+		"items": {
+			"type": "array",
+			"default": [
+				{ "icon": "⭐", "title": "30+ Years Experience", "sub": "Serving Singapore since 1993" },
+				{ "icon": "🫶", "title": "Personalised Advice", "sub": "One-on-one TCM guidance" },
+				{ "icon": "🌿", "title": "Wide Product Range", "sub": "Herbs, tonics & premium remedies" },
+				{ "icon": "🏪", "title": "Family-Owned Business", "sub": "A neighbourhood institution" }
+			]
+		}
+	},
+	"textdomain": "ai-zippy",
+	"editorScript": "file:./index.js",
+	"editorStyle": "file:./index.css",
+	"style": "file:./style-index.css",
+	"render": "file:./render.php"
+}

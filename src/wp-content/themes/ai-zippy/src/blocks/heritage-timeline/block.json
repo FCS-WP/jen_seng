@@ -1,0 +1,24 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "ai-zippy/heritage-timeline",
+	"version": "1.0.0",
+	"title": "Heritage Timeline",
+	"category": "ai-zippy",
+	"icon": "backup",
+	"description": "Historical timeline for About page",
+	"attributes": {
+		"milestones": {
+			"type": "array",
+			"default": [
+				{ "year": "1993", "title": "The Beginning", "text": "Two sisters and a spouse opened a small traditional medicine hall in Serangoon." },
+				{ "year": "2010", "title": "Growth & Relocation", "text": "Expanding our store and range of premium herbs to better serve the community." },
+				{ "year": "2024", "title": "Digital Transformation", "text": "Bringing our 30 years of expertise online to reach health-seekers across Singapore." }
+			]
+		}
+	},
+	"editorScript": "file:./index.js",
+	"editorStyle": "file:./index.css",
+	"style": "file:./style-index.css",
+	"render": "file:./render.php"
+}

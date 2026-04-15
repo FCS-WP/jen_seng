@@ -1,0 +1,28 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "ai-zippy/about-hero",
+	"version": "1.0.0",
+	"title": "About Hero",
+	"category": "ai-zippy",
+	"icon": "info",
+	"description": "Featured header for About Us page",
+	"attributes": {
+		"title": {
+			"type": "string",
+			"default": "A Heritage of Healing Since 1993"
+		},
+		"subtitle": {
+			"type": "string",
+			"default": "Discover the story behind Jen Seng Medical Hall — a family-owned institution dedicated to Traditional Chinese Medicine and holistic wellness for over three decades."
+		},
+		"imageUrl": {
+			"type": "string",
+			"default": "https://images.unsplash.com/photo-1555636222-cae831e670b3?w=1200&q=80"
+		}
+	},
+	"editorScript": "file:./index.js",
+	"editorStyle": "file:./index.css",
+	"style": "file:./style-index.css",
+	"render": "file:./render.php"
+}

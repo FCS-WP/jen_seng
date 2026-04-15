@@ -1,19 +1,86 @@
 @use "variables" as *;
 
-footer.wp-block-group {
-	// Footer links
-	a {
-		color: $c-white;
-		text-decoration: none;
-		transition: opacity $transition-speed ease;
+.site-footer {
+	background-color: $c-footer-bg !important;
+	color: $c-white;
 
-		&:hover {
-			opacity: 0.8;
+	h4 {
+		color: $c-white;
+		margin-bottom: 1.5rem;
+	}
+
+	.footer-logo-icon {
+		p {
+			margin: 0;
+			font-size: 16px;
 		}
 	}
 
-	// Footer navigation vertical spacing
-	.wp-block-navigation a {
+	.wp-block-site-title {
+		margin: 0;
 		color: $c-white !important;
+		font-family: var(--wp--preset--font-family--heading);
+	}
+
+	p {
+		color: var(--wp--preset--color--cream-muted);
+		
+		&[class*="has-"] {
+			color: inherit;
+		}
+	}
+
+	a {
+		color: var(--wp--preset--color--cream-muted);
+		transition: color $transition-speed ease;
+		text-decoration: none;
+
+		&:hover {
+			color: var(--wp--preset--color--white) !important;
+		}
+	}
+
+	.wp-block-navigation {
+		ul {
+			list-style: none;
+			padding: 0;
+			margin: 0;
+		}
+
+		a {
+			display: block;
+			padding: 0;
+			margin-bottom: 0.75rem;
+		}
+	}
+
+	.wp-block-social-links {
+		margin-top: 1rem;
+		
+		.wp-social-link {
+			color: $c-white !important;
+			
+			&:hover {
+				opacity: 0.8;
+			}
+		}
+	}
+
+	.wp-block-separator {
+		border: none;
+		border-top: 1px solid rgba(255, 255, 255, 0.1);
+		width: 100%;
+		max-width: 100%;
+	}
+
+	.footer-bottom {
+		p {
+			font-size: 0.75rem;
+			color: rgba(255, 255, 255, 0.4);
+
+			&[class*="has-"] {
+				color: inherit;
+			}
+		}
 	}
 }

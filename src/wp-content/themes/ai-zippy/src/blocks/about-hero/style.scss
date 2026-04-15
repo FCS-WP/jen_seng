@@ -1,0 +1,83 @@
+@use "../../scss/variables" as *;
+
+.about-hero {
+	height: 60vh;
+    min-height: 500px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    background-size: cover;
+    background-position: center;
+    color: #fff;
+    position: relative;
+    padding: 0 2rem;
+
+	.about-hero-content {
+		max-width: 800px;
+		margin: 0 auto;
+        z-index: 2;
+	}
+
+	h1 {
+		font-family: var(--wp--preset--font-family--heading);
+		font-size: clamp(36px, 6vw, 64px);
+		font-weight: 700;
+		color: #fff;
+		margin-bottom: 2rem;
+		line-height: 1.1;
+	}
+
+	p {
+		font-size: clamp(16px, 2vw, 20px);
+		color: rgba(255, 255, 255, 0.9);
+		line-height: 1.6;
+		margin: 0;
+        font-family: var(--wp--preset--font-family--body);
+	}
+
+    .hero-scroll-indicator {
+        position: absolute;
+        bottom: 30px;
+        left: 50%;
+        transform: translateX(-50%);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+        
+        .mouse {
+            width: 22px;
+            height: 38px;
+            border: 2px solid #fff;
+            border-radius: 20px;
+            position: relative;
+            
+            &::after {
+                content: '';
+                position: absolute;
+                top: 8px;
+                left: 50%;
+                width: 4px;
+                height: 4px;
+                background: #fff;
+                margin-left: -2px;
+                border-radius: 50%;
+                animation: scrollMouse 2s infinite;
+            }
+        }
+        
+        .label {
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-weight: 600;
+            opacity: 0.7;
+        }
+    }
+}
+
+@keyframes scrollMouse {
+    0% { opacity: 1; transform: translateY(0); }
+    100% { opacity: 0; transform: translateY(12px); }
+}

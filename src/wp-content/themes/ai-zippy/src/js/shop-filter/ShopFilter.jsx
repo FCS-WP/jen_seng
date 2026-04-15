@@ -1,31 +1,18 @@
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect } from "react";
 import { fetchProducts, fetchFilterOptions } from "./api.js";
 import useFilters from "./useFilters.js";
-import FilterPanel from "./components/FilterPanel.jsx";
 import ProductGrid from "./components/ProductGrid.jsx";
-import Toolbar from "./components/Toolbar.jsx";
-import ActiveFilters from "./components/ActiveFilters.jsx";
-import Pagination from "./components/Pagination.jsx";
 import "./shop-filter.scss";
 
 export default function ShopFilter({ config }) {
-	const [layout, setLayout] = useState(config.layout || "sidebar"); // "sidebar" | "top"
-	const [viewMode, setViewMode] = useState(
-		() => localStorage.getItem("shop-view") || "grid",
-	);
 	const [options, setOptions] = useState(null);
 	const [products, setProducts] = useState([]);
 	const [total, setTotal] = useState(0);
-	const [pages, setPages] = useState(0);
 	const [loading, setLoading] = useState(true);
-	const [mobileFilterOpen, setMobileFilterOpen] = useState(false);
 
 	const {
 		filters,
 		updateFilter,
-		resetFilters,
-		setSearch,
-		toggleAttribute,
 		toggleCategory,
 	} = useFilters({ per_page: config.per_page || 12 });
 
@@ -41,108 +28,109 @@ export default function ShopFilter({ config }) {
 			.then((data) => {
 				setProducts(data.products);
 				setTotal(data.total);
-				setPages(data.pages);
 			})
 			.catch(console.error)
 			.finally(() => setLoading(false));
 	}, [filters]);
 
-	const handleViewChange = useCallback((mode) => {
-		setViewMode(mode);
-		localStorage.setItem("shop-view", mode);
-	}, []);
+	const activeCategory = filters.category ? filters.category.split(',')[0] : 'all';
 
-	const hasActiveFilters =
-		filters.search ||
-		filters.category ||
-		filters.min_price > 0 ||
-		filters.max_price > 0 ||
-		filters.attributes ||
-		filters.stock_status;
+	const handleCategoryClick = (catSlug) => {
+		if (catSlug === 'all') {
+			updateFilter("category", "");
+		} else {
+			updateFilter("category", catSlug);
+		}
+	};
 
 	if (!options) {
 		return (
 			<div className="sf sf--loading">
-				<div className="sf__toolbar-skeleton" />
-				<div className="sf__body">
-					<div className="sf__filters-skeleton" />
-					<div className="sf__products">
-						<div className={`sf__grid-loading sf__grid-loading--grid`}>
-							{Array.from({ length: config.per_page || 12 }).map((_, i) => (
-								<div key={i} className="sf__skeleton" />
-							))}
-						</div>
-					</div>
-				</div>
+				<div className="shop-header">
+          <div className="shop-header-inner">
+            <div className="skeleton" style={{ height: '20px', width: '200px', marginBottom: '16px' }} />
+            <div className="skeleton" style={{ height: '44px', width: '300px', marginBottom: '8px' }} />
+            <div className="skeleton" style={{ height: '22px', width: '100%', marginBottom: '32px' }} />
+            <div className="filter-bar">
+               {[1,2,3,4,5].map(i => <div key={i} className="skeleton" style={{ height: '40px', width: '120px' }} />)}
+            </div>
+          </div>
+        </div>
 			</div>
 		);
 	}
 
 	return (
-		<div className={`sf sf--${layout}`}>
-			{/* Toolbar: sort, view toggle, layout switch, mobile filter button */}
-			<Toolbar
-				layout={layout}
-				onLayoutChange={setLayout}
-				viewMode={viewMode}
-				onViewChange={handleViewChange}
-				orderby={filters.orderby}
-				order={filters.order}
-				onSortChange={(orderby, order) => {
-					updateFilter("orderby", orderby);
-					setTimeout(() => updateFilter("order", order), 0);
-				}}
-				total={total}
-				onMobileFilterToggle={() => setMobileFilterOpen(!mobileFilterOpen)}
-			/>
+		<div className="sf">
+      <div className="shop-header">
+        <div className="shop-header-inner">
+          <div className="breadcrumb">
+            <a href="/">Home</a>
+            <span>›</span>
+            Shop
+          </div>
+          <h1>Our Products</h1>
+          <p>Browse our range of traditional Chinese herbs, tonics, and wellness remedies — curated from 30 years of expertise.</p>
+          
+          <div className="filter-bar">
+            <button 
+              className={`filter-tab ${activeCategory === 'all' ? 'active' : ''}`}
+              onClick={() => handleCategoryClick('all')}
+            >
+              All Products
+            </button>
+            {options.categories.map(cat => (
+              <button 
+                key={cat.id}
+                className={`filter-tab ${activeCategory === cat.slug ? 'active' : ''}`}
+                onClick={() => handleCategoryClick(cat.slug)}
+              >
+                {cat.name}
+              </button>
+            ))}
+          </div>
+        </div>
+      </div>
 
-			{/* Active filters */}
-			{hasActiveFilters && (
-				<ActiveFilters
-					filters={filters}
-					options={options}
-					onRemoveCategory={toggleCategory}
-					onRemoveAttribute={toggleAttribute}
-					onClearAll={resetFilters}
-				/>
-			)}
+      <div className="shop-body">
+        <div className="shop-body-inner">
+          <div className="shop-meta">
+            <div className="shop-count">Showing <strong>{total}</strong> products</div>
+            <select 
+              className="sort-select" 
+              value={`${filters.orderby}-${filters.order}`}
+              onChange={(e) => {
+                const [orderby, order] = e.target.value.split('-');
+                updateFilter("orderby", orderby);
+                setTimeout(() => updateFilter("order", order), 0);
+              }}
+            >
+              <option value="menu_order-ASC">Sort by: Featured</option>
+              <option value="price-ASC">Price: Low to High</option>
+              <option value="price-DESC">Price: High to Low</option>
+              <option value="date-DESC">Newest First</option>
+            </select>
+          </div>
 
-			<div className="sf__body">
-				{/* Filter panel */}
-				<FilterPanel
-					options={options}
-					filters={filters}
-					onSearch={setSearch}
-					onToggleCategory={toggleCategory}
-					onToggleAttribute={toggleAttribute}
-					onPriceChange={(min, max) => {
-						updateFilter("min_price", min);
-						setTimeout(() => updateFilter("max_price", max), 0);
-					}}
-					onStockChange={(val) => updateFilter("stock_status", val)}
-					layout={layout}
-					mobileOpen={mobileFilterOpen}
-					onMobileClose={() => setMobileFilterOpen(false)}
-				/>
+          <ProductGrid
+            products={products}
+            loading={loading}
+            perPage={filters.per_page}
+          />
 
-				{/* Product grid */}
-				<div className="sf__products">
-					<ProductGrid
-						products={products}
-						loading={loading}
-						viewMode={viewMode}
-						perPage={filters.per_page}
-					/>
-
-					{pages > 1 && (
-						<Pagination
-							current={filters.page}
-							total={pages}
-							onChange={(p) => updateFilter("page", p)}
-						/>
-					)}
-				</div>
-			</div>
+          {total > products.length && (
+            <div className="load-more">
+              <button 
+                className="btn-outline" 
+                onClick={() => updateFilter("per_page", filters.per_page + 12)}
+              >
+                Load More Products
+              </button>
+            </div>
+          )}
+        </div>
+      </div>
 		</div>
 	);
 }
+

@@ -1,0 +1,78 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "ai-zippy/home-hero",
+	"version": "1.0.0",
+	"title": "Home Hero",
+	"category": "ai-zippy",
+	"icon": "cover-image",
+	"description": "Jen Seng Home Hero with image, badge, and trust items.",
+	"keywords": ["hero", "banner", "home", "jenseng"],
+	"supports": {
+		"html": false,
+		"align": ["wide", "full"],
+		"spacing": {
+			"margin": true,
+			"padding": true
+		}
+	},
+	"attributes": {
+		"eyebrow": {
+			"type": "string",
+			"default": "✦ Est. 1993 · Serangoon Central"
+		},
+		"title": {
+			"type": "string",
+			"default": "Rooted in Tradition. Trusted Since 1993."
+		},
+		"subtitle": {
+			"type": "string",
+			"default": "Singapore's trusted Chinese medical hall for herbal remedies, tonics, and everyday wellness — now available online, delivered to your door."
+		},
+		"primaryBtnText": {
+			"type": "string",
+			"default": "Shop Now →"
+		},
+		"primaryBtnUrl": {
+			"type": "string",
+			"default": "#"
+		},
+		"secondaryBtnText": {
+			"type": "string",
+			"default": "Visit Our Store"
+		},
+		"secondaryBtnUrl": {
+			"type": "string",
+			"default": "#"
+		},
+		"trustItems": {
+			"type": "array",
+			"default": [
+				{ "icon": "🌿", "text": "Traditional Herbs" },
+				{ "icon": "⭐", "text": "30+ Years" },
+				{ "icon": "🚚", "text": "Online Delivery" }
+			]
+		},
+		"mediaId": {
+			"type": "number",
+			"default": 0
+		},
+		"mediaUrl": {
+			"type": "string",
+			"default": "https://images.unsplash.com/photo-1512069772995-ec65ed45afd6?w=900&q=85"
+		},
+		"badgeTitle": {
+			"type": "string",
+			"default": "30+"
+		},
+		"badgeText": {
+			"type": "string",
+			"default": "Years of trusted care"
+		}
+	},
+	"textdomain": "ai-zippy",
+	"editorScript": "file:./index.js",
+	"editorStyle": "file:./index.css",
+	"style": "file:./style-index.css",
+	"render": "file:./render.php"
+}

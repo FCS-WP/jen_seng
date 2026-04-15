@@ -17,6 +17,7 @@ class ThemeSetup
         add_action('after_setup_theme', [self::class, 'setup']);
         add_action('init', [self::class, 'registerBlocks']);
         add_filter('block_categories_all', [self::class, 'blockCategories']);
+        add_action('wp_enqueue_scripts', 'wp_enqueue_global_styles', 1);
     }
 
     /**

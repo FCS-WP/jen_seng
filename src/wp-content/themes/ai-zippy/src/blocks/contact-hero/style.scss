@@ -1,0 +1,38 @@
+@use "../../scss/variables" as *;
+
+.contact-hero {
+	background: var(--wp--preset--color--cream-dark);
+	padding: 56px 32px;
+	border-bottom: 1px solid var(--wp--preset--color--border);
+	text-align: center;
+
+	.contact-hero-inner {
+		max-width: 720px;
+		margin: 0 auto;
+	}
+
+	.section-label {
+		justify-content: center;
+		margin-bottom: 12px;
+		
+		&::before {
+			display: none;
+		}
+	}
+
+	h1 {
+		font-family: var(--wp--preset--font-family--heading);
+		font-size: clamp(32px, 4vw, 40px);
+		font-weight: 700;
+		color: var(--wp--preset--color--text);
+		margin-bottom: 12px;
+		line-height: 1.2;
+	}
+
+	p {
+		font-size: 16px;
+		color: var(--wp--preset--color--mid);
+		line-height: 1.7;
+		margin: 0;
+	}
+}

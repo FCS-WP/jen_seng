@@ -1,0 +1,30 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "ai-zippy/heritage-story",
+	"version": "1.0.0",
+	"title": "Heritage Story",
+	"category": "ai-zippy",
+	"icon": "book-alt",
+	"description": "Story section with image, quote, and badge.",
+	"supports": {
+		"html": false,
+		"align": ["wide", "full"],
+		"spacing": { "margin": true, "padding": true }
+	},
+	"attributes": {
+		"image": { "type": "string", "default": "https://images.unsplash.com/photo-1555636222-cae831e670b3?w=700" },
+		"badgeYear": { "type": "string", "default": "1993" },
+		"label": { "type": "string", "default": "Our Heritage" },
+		"title": { "type": "string", "default": "A Family Tradition Since 1993" },
+		"content": { "type": "string", "default": "Our story began when two sisters and a spouse opened a small traditional medicine hall in Serangoon — full of heart, herbs, and the belief that good health starts with care." },
+		"quote": { "type": "string", "default": "Every jar of herbs, every remedy, and every conversation carried the warmth of family." },
+		"ctaText": { "type": "string", "default": "Read Our Full Story →" },
+		"ctaUrl": { "type": "string", "default": "#" }
+	},
+	"textdomain": "ai-zippy",
+	"editorScript": "file:./index.js",
+	"editorStyle": "file:./index.css",
+	"style": "file:./style-index.css",
+	"render": "file:./render.php"
+}

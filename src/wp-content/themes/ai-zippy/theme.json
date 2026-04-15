@@ -7,63 +7,73 @@
 			"palette": [
 				{
 					"slug": "primary",
-					"color": "#1a1a1a",
-					"name": "Primary"
+					"color": "#8B1A1A",
+					"name": "Jen Seng Red"
+				},
+				{
+					"slug": "primary-dark",
+					"color": "#6A1010",
+					"name": "Red Dark"
+				},
+				{
+					"slug": "primary-light",
+					"color": "#F5EAEA",
+					"name": "Red Light"
 				},
 				{
 					"slug": "secondary",
-					"color": "#f5f5f5",
-					"name": "Secondary"
+					"color": "#FDF8E1",
+					"name": "Jen Seng Yellow"
 				},
 				{
-					"slug": "accent",
-					"color": "#c8a97e",
-					"name": "Accent"
+					"slug": "secondary-light",
+					"color": "#FDF8E1",
+					"name": "Yellow Light"
 				},
 				{
-					"slug": "white",
-					"color": "#ffffff",
-					"name": "White"
+					"slug": "background",
+					"color": "#FFFDF8",
+					"name": "Jen Seng Cream"
 				},
 				{
-					"slug": "black",
-					"color": "#000000",
-					"name": "Black"
+					"slug": "cream-dark",
+					"color": "#F5F0E8",
+					"name": "Cream Dark"
 				},
 				{
-					"slug": "navy",
-					"color": "#1b2a4a",
-					"name": "Navy"
+					"slug": "cream-muted",
+					"color": "#EDE6D6",
+					"name": "Cream Muted"
 				},
 				{
-					"slug": "orange",
-					"color": "#ff6b00",
-					"name": "Orange"
+					"slug": "body-text",
+					"color": "#2E2420",
+					"name": "Jen Seng Dark"
 				},
 				{
-					"slug": "danger",
-					"color": "#e53935",
-					"name": "Danger"
-				},
-				{
-					"slug": "success",
-					"color": "#4caf50",
-					"name": "Success"
-				},
-				{
-					"slug": "info",
-					"color": "#2196f3",
-					"name": "Info"
-				},
-				{
-					"slug": "border",
-					"color": "#e5e5e5",
-					"name": "Border"
+					"slug": "mid",
+					"color": "#6B5E56",
+					"name": "Mid"
 				},
 				{
 					"slug": "muted",
-					"color": "#999999",
+					"color": "#A8998E",
 					"name": "Muted"
+				},
+				{
+					"slug": "border",
+					"color": "#E2D8CC",
+					"name": "Border"
+				},
+				{
+					"slug": "white",
+					"color": "#FFFFFF",
+					"name": "White"
+				},
+				{
+					"slug": "footer-bg",
+					"color": "#1C1410",
+					"name": "Footer Background"
 				}
 			]
 		},
@@ -82,9 +92,29 @@
 					"fontFamily": "-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', sans-serif",
 					"slug": "system",
 					"name": "System"
+				},
+				{
+					"fontFamily": "'Lora', serif",
+					"slug": "heading",
+					"name": "Heading (Lora)"
+				},
+				{
+					"fontFamily": "'Source Sans 3', sans-serif",
+					"slug": "body",
+					"name": "Body (Source Sans 3)"
+				},
+				{
+					"fontFamily": "'Noto Serif SC', serif",
+					"slug": "decorative",
+					"name": "Decorative (Noto Serif SC)"
 				}
 			],
 			"fontSizes": [
+				{
+					"slug": "tiny",
+					"size": "0.75rem",
+					"name": "Tiny"
+				},
 				{
 					"slug": "small",
 					"size": "0.875rem",
@@ -112,7 +142,14 @@
 			"wideSize": "1400px"
 		},
 		"spacing": {
-			"units": ["px", "em", "rem", "%", "vw", "vh"]
+			"units": [
+				"px",
+				"em",
+				"rem",
+				"%",
+				"vw",
+				"vh"
+			]
 		}
 	},
 	"styles": {
@@ -126,7 +163,16 @@
 			"lineHeight": "1.6"
 		},
 		"spacing": {
-			"blockGap": "1.5rem"
+			"blockGap": "0"
+		},
+		"blocks": {
+			"ai-zippy/home-hero": {
+				"spacing": {
+					"margin": {
+						"top": "0"
+					}
+				}
+			}
 		}
 	},
 	"templateParts": [
@@ -145,27 +191,38 @@
 		{
 			"name": "blank",
 			"title": "Blank",
-			"postTypes": ["page", "post"]
+			"postTypes": [
+				"page",
+				"post"
+			]
 		},
 		{
 			"name": "page-about",
 			"title": "About",
-			"postTypes": ["page"]
+			"postTypes": [
+				"page"
+			]
 		},
 		{
 			"name": "page-contact",
 			"title": "Contact",
-			"postTypes": ["page"]
+			"postTypes": [
+				"page"
+			]
 		},
 		{
 			"name": "page-cart",
 			"title": "Cart",
-			"postTypes": ["page"]
+			"postTypes": [
+				"page"
+			]
 		},
 		{
 			"name": "page-checkout",
 			"title": "Checkout",
-			"postTypes": ["page"]
+			"postTypes": [
+				"page"
+			]
 		}
 	]
 }
