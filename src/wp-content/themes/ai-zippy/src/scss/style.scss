@@ -7,6 +7,9 @@
 @use "add-to-cart";
 @use "checkout";
 @use "wc-notices";
+@use "single-product";
+@use "single-post";
+@use "search";
 @use "footer";
 
 // AI Zippy
@@ -17,11 +20,13 @@
 .wp-block-post-content.is-layout-constrained > .contact-hero,
 .wp-block-post-content.is-layout-constrained > .whatsapp-banner-section,
 .wp-block-post-content.is-layout-constrained > .story-section,
-.wp-block-post-content.is-layout-constrained > .wp-block-ai-zippy-heritage-story,
+.wp-block-post-content.is-layout-constrained
+  > .wp-block-ai-zippy-heritage-story,
 .wp-block-post-content.is-layout-constrained > .usp-section,
 .wp-block-post-content.is-layout-constrained > .wp-block-ai-zippy-usp-grid,
 .wp-block-post-content.is-layout-constrained > .location-section,
-.wp-block-post-content.is-layout-constrained > .wp-block-ai-zippy-store-location,
+.wp-block-post-content.is-layout-constrained
+  > .wp-block-ai-zippy-store-location,
 .wp-block-post-content.is-layout-constrained > .category-grid-section,
 .wp-block-post-content.is-layout-constrained > .wp-block-ai-zippy-category-grid,
 .wp-block-post-content.is-layout-constrained > .knowledge-grid,
@@ -29,14 +34,14 @@
 .wp-block-post-content.is-layout-constrained > .heritage-timeline,
 .wp-block-post-content.is-layout-constrained > .contact-form-section,
 .wp-block-post-content.is-layout-constrained > .contact-info-map {
-    max-width: none !important;
-    width: 100% !important;
-    margin-left: 0 !important;
-    margin-right: 0 !important;
+  max-width: none !important;
+  width: 100% !important;
+  margin-left: 0 !important;
+  margin-right: 0 !important;
 }
 
 .wp-block-post-content.is-layout-constrained > .about-hero,
 .wp-block-post-content.is-layout-constrained > .home-hero,
 .wp-block-post-content.is-layout-constrained > .contact-hero {
-    margin-top: 0 !important;
+  margin-top: 0 !important;
 }

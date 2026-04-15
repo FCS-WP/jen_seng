@@ -65,6 +65,26 @@
 		"autoplayDelay": {
 			"type": "number",
 			"default": 5000
+		},
+		"sectionLabel": {
+			"type": "string",
+			"default": "Bestsellers"
+		},
+		"subtext": {
+			"type": "string",
+			"default": ""
+		},
+		"viewAllLabel": {
+			"type": "string",
+			"default": ""
+		},
+		"viewAllUrl": {
+			"type": "string",
+			"default": ""
+		},
+		"textAlignment": {
+			"type": "string",
+			"default": "center"
 		}
 	},
 	"textdomain": "ai-zippy",

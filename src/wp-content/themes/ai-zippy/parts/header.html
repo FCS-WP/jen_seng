@@ -1,57 +1,90 @@
 <!-- wp:group {"tagName":"div","className":"announce-bar","backgroundColor":"secondary","textColor":"text","style":{"spacing":{"padding":{"top":"8px","bottom":"8px"}}},"layout":{"type":"constrained"}} -->
-<div class="wp-block-group announce-bar has-text-color has-secondary-background-color has-background"
-	style="padding-top:8px;padding-bottom:8px">
-	<!-- wp:paragraph {"align":"center","fontSize":"tiny","style":{"typography":{"fontWeight":"500"}}} -->
-	<p class="has-text-align-center has-tiny-font-size" style="font-weight:500">🚚&nbsp; Free delivery on orders above
-		$[TBD] · Est. 1993 · Traditional Chinese Medicine · Serangoon Central</p>
-	<!-- /wp:paragraph -->
+<div
+  class="wp-block-group announce-bar has-text-color has-secondary-background-color has-background"
+  style="padding-top: 8px; padding-bottom: 8px"
+>
+  <!-- wp:paragraph {"align":"center","fontSize":"tiny","style":{"typography":{"fontWeight":"500"}}} -->
+  <p class="has-text-align-center has-tiny-font-size" style="font-weight: 500">
+    🚚&nbsp; Free delivery on orders above $[TBD] · Est. 1993 · Traditional
+    Chinese Medicine · Serangoon Central
+  </p>
+  <!-- /wp:paragraph -->
 </div>
 <!-- /wp:group -->
 
 <!-- wp:group {"tagName":"header","className":"site-header","style":{"spacing":{"padding":{"top":"0.75rem","bottom":"0.75rem"}},"border":{"bottom":{"color":"var(--wp--preset--color--border)","width":"1px"}}},"backgroundColor":"white","layout":{"type":"constrained"}} -->
-<header class="wp-block-group site-header has-white-background-color has-background"
-	style="border-bottom-color:var(--wp--preset--color--border);border-bottom-width:1px;padding-top:0.75rem;padding-bottom:0.75rem">
+<header
+  class="wp-block-group site-header has-white-background-color has-background"
+  style="
+    border-bottom-color: var(--wp--preset--color--border);
+    border-bottom-width: 1px;
+    padding-top: 0.75rem;
+    padding-bottom: 0.75rem;
+  "
+>
+  <!-- wp:group {"layout":{"type":"flex","justifyContent":"space-between","flexWrap":"nowrap","verticalAlignment":"center"}} -->
+  <div class="wp-block-group">
+    <!-- wp:group {"className":"nav-logo","layout":{"type":"flex","flexWrap":"nowrap","verticalAlignment":"center"},"style":{"spacing":{"blockGap":"12px"}}} -->
+    <div class="wp-block-group nav-logo">
+      <!-- wp:site-logo {"width":48,"shouldSyncIcon":false,"className":"nav-logo-icon"} /-->
 
-	<!-- wp:group {"layout":{"type":"flex","justifyContent":"space-between","flexWrap":"nowrap","verticalAlignment":"center"}} -->
-	<div class="wp-block-group">
+      <!-- wp:group {"className":"nav-logo-text","style":{"spacing":{"blockGap":"0"}}} -->
+      <div class="wp-block-group nav-logo-text">
+        <!-- wp:site-title {"style":{"typography":{"fontWeight":"700","lineHeight":"1.2"}},"fontSize":"medium"} /-->
+        <!-- wp:paragraph {"style":{"typography":{"lineHeight":"1"}},"fontSize":"tiny","textColor":"muted"} -->
+        <p
+          class="has-muted-color has-text-color has-tiny-font-size"
+          style="line-height: 1"
+        >
+          Traditional Chinese Medicine · Est. 1993
+        </p>
+        <!-- /wp:paragraph -->
+      </div>
+      <!-- /wp:group -->
+    </div>
+    <!-- /wp:group -->
 
-		<!-- wp:group {"className":"nav-logo","layout":{"type":"flex","flexWrap":"nowrap","verticalAlignment":"center"},"style":{"spacing":{"blockGap":"12px"}}} -->
-		<div class="wp-block-group nav-logo">
-			<!-- wp:group {"className":"nav-logo-icon","style":{"border":{"radius":"6px"},"spacing":{"padding":{"top":"6px","bottom":"6px","left":"10px","right":"10px"}}},"backgroundColor":"primary","textColor":"white"} -->
-			<div class="wp-block-group nav-logo-icon has-white-color has-primary-background-color has-text-color has-background"
-				style="border-radius:6px;padding-top:6px;padding-right:10px;padding-bottom:6px;padding-left:10px">
-				<!-- wp:paragraph {"style":{"typography":{"fontWeight":"700","lineHeight":"1"}},"fontFamily":"decorative"} -->
-				<p class="has-decorative-font-family" style="font-weight:700;line-height:1">回春</p>
-				<!-- /wp:paragraph -->
-			</div>
-			<!-- /wp:group -->
+    <!-- wp:group {"className":"nav-right","layout":{"type":"flex","flexWrap":"nowrap","verticalAlignment":"center"},"style":{"spacing":{"blockGap":"24px"}}} -->
+    <div class="wp-block-group nav-right">
+      <!-- wp:navigation {"overlayMenu":"mobile","layout":{"type":"flex","justifyContent":"right"},"style":{"typography":{"fontWeight":"500"},"spacing":{"blockGap":"0"}},"fontSize":"small"} /-->
 
-			<!-- wp:group {"className":"nav-logo-text","style":{"spacing":{"blockGap":"0"}}} -->
-			<div class="wp-block-group nav-logo-text">
-				<!-- wp:site-title {"style":{"typography":{"fontWeight":"700","lineHeight":"1.2"}},"fontSize":"medium"} /-->
-				<!-- wp:paragraph {"style":{"typography":{"lineHeight":"1"}},"fontSize":"tiny","textColor":"muted"} -->
-				<p class="has-muted-color has-text-color has-tiny-font-size" style="line-height:1">Traditional Chinese
-					Medicine · Est. 1993</p>
-				<!-- /wp:paragraph -->
-			</div>
-			<!-- /wp:group -->
-		</div>
-		<!-- /wp:group -->
+      <!-- wp:group {"className":"nav-icons","layout":{"type":"flex","flexWrap":"nowrap","verticalAlignment":"center"},"style":{"spacing":{"blockGap":"4px"}}} -->
+      <div class="wp-block-group nav-icons">
+        <!-- wp:group {"className":"nav-icon-wrapper nav-search","layout":{"type":"flex"}} -->
+        <div class="wp-block-group nav-icon-wrapper nav-search">
+          <button class="nav-icon-btn search-toggle" aria-label="Search">
+            <svg
+              width="20"
+              height="20"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <circle cx="11" cy="11" r="8" />
+              <path d="m21 21-4.3-4.3" />
+            </svg>
+          </button>
+          <div class="search-expand-container">
+            <!-- wp:search {"label":"Search","showLabel":false,"placeholder":"Search...","buttonUseIcon":true} /-->
+          </div>
+        </div>
+        <!-- /wp:group -->
 
-		<!-- wp:group {"className":"nav-right","layout":{"type":"flex","flexWrap":"nowrap","verticalAlignment":"center"},"style":{"spacing":{"blockGap":"24px"}}} -->
-		<div class="wp-block-group nav-right">
-			<!-- wp:navigation {"overlayMenu":"mobile","layout":{"type":"flex","justifyContent":"right"},"style":{"typography":{"fontWeight":"500"},"spacing":{"blockGap":"0"}},"fontSize":"small"} /-->
+        <!-- wp:group {"className":"nav-icon-wrapper nav-account","layout":{"type":"flex"}} -->
+        <div class="wp-block-group nav-icon-wrapper nav-account">
+          <!-- wp:woocommerce/customer-account {"displayStyle":"icon_only"} /-->
+        </div>
+        <!-- /wp:group -->
 
-			<!-- wp:group {"className":"nav-icons","layout":{"type":"flex","flexWrap":"nowrap","verticalAlignment":"center"},"style":{"spacing":{"blockGap":"12px"}}} -->
-			<div class="wp-block-group nav-icons">
-				<!-- wp:woocommerce/mini-cart {"hasText":false} /-->
-			</div>
-			<!-- /wp:group -->
-		</div>
-		<!-- /wp:group -->
-
-	</div>
-	<!-- /wp:group -->
-
+        <!-- wp:woocommerce/mini-cart {"hasText":false} /-->
+      </div>
+      <!-- /wp:group -->
+    </div>
+    <!-- /wp:group -->
+  </div>
+  <!-- /wp:group -->
 </header>
 <!-- /wp:group -->

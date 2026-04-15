@@ -24,15 +24,19 @@
 
 	p {
 		color: var(--wp--preset--color--cream-muted);
+		
+		&[class*="has-"] {
+			color: inherit;
+		}
 	}
 
 	a {
-		color: var(--wp--preset--color--cream-muted) !important;
+		color: var(--wp--preset--color--cream-muted);
 		transition: color $transition-speed ease;
 		text-decoration: none;
 
 		&:hover {
-			color: var(--wp--preset--color--secondary) !important;
+			color: var(--wp--preset--color--white) !important;
 		}
 	}
 
@@ -73,6 +77,10 @@
 		p {
 			font-size: 0.75rem;
 			color: rgba(255, 255, 255, 0.4);
+
+			&[class*="has-"] {
+				color: inherit;
+			}
 		}
 	}
 }
