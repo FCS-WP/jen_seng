@@ -15,19 +15,16 @@ $wrapper_attributes = get_block_wrapper_attributes(['class' => 'story-section'])
         <div class="story-grid">
             <div class="story-img">
                 <?php if ($image) : ?><img src="<?php echo esc_url($image); ?>" alt="<?php echo esc_attr($title); ?>"><?php endif; ?>
-                <?php if ($year) : ?>
-                    <div class="story-img-badge"><div class="num"><?php echo esc_html($year); ?></div><div class="txt">Est. in<br>Serangoon</div></div>
-                <?php endif; ?>
             </div>
             <div class="story-text">
                 <?php if ($label) : ?><div class="section-label"><?php echo esc_html($label); ?></div><?php endif; ?>
                 <?php if ($title) : ?><h2 class="section-title"><?php echo esc_html($title); ?></h2><?php endif; ?>
                 <?php if ($content) : ?><p class="section-sub"><?php echo esc_html($content); ?></p><?php endif; ?>
-                <?php if ($quote) : ?>
-                    <div class="story-quote"><?php echo wp_kses_post($quote); ?></div>
-                <?php endif; ?>
+                
                 <?php if ($cta_text) : ?>
-                    <div style="margin-top:28px"><a href="<?php echo esc_url($cta_url); ?>" class="btn-primary"><?php echo esc_html($cta_text); ?></a></div>
+                    <div class="story-cta">
+                        <a href="<?php echo esc_url($cta_url); ?>" class="btn-primary"><?php echo esc_html($cta_text); ?></a>
+                    </div>
                 <?php endif; ?>
             </div>
         </div>

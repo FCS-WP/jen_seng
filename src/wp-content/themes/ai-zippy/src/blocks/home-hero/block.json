@@ -61,6 +61,14 @@
 			"type": "string",
 			"default": "https://images.unsplash.com/photo-1512069772995-ec65ed45afd6?w=900&q=85"
 		},
+		"bgMediaId": {
+			"type": "number",
+			"default": 0
+		},
+		"bgMediaUrl": {
+			"type": "string",
+			"default": ""
+		},
 		"badgeTitle": {
 			"type": "string",
 			"default": "30+"

@@ -12,14 +12,21 @@ $secondary_btn_text = $attributes['secondaryBtnText'] ?? '';
 $secondary_btn_url  = $attributes['secondaryBtnUrl'] ?? '#';
 $trust_items       = $attributes['trustItems'] ?? [];
 $media_url         = $attributes['mediaUrl'] ?? '';
+$bg_media_url      = $attributes['bgMediaUrl'] ?? '';
 $badge_title       = $attributes['badgeTitle'] ?? '';
 $badge_text        = $attributes['badgeText'] ?? '';
+
+$style = '';
+if ($bg_media_url) {
+    $style = 'style="background-image: url(' . esc_url($bg_media_url) . ');"';
+}
 
 $wrapper_attributes = get_block_wrapper_attributes(['class' => 'home-hero']);
 ?>
 
-<section <?php echo $wrapper_attributes; ?>>
-    <div class="home-hero__content">
+<section <?php echo $wrapper_attributes; ?> <?php echo $style; ?>>
+    <div class="home-hero__inner">
+        <div class="home-hero__content">
         <?php if ($eyebrow) : ?>
             <div class="home-hero__eyebrow"><?php echo esc_html($eyebrow); ?></div>
         <?php endif; ?>
@@ -75,5 +82,6 @@ $wrapper_attributes = get_block_wrapper_attributes(['class' => 'home-hero']);
                 </div>
             </div>
         <?php endif; ?>
+    </div>
     </div>
 </section>

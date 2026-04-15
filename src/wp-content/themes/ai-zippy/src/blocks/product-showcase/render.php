@@ -53,33 +53,19 @@ if (!function_exists('ai_zippy_render_product_card')) :
             </div>
 
             <div class="ps__card-body">
-                <?php if ($cat_name) : ?>
-                    <span class="ps__card-cat"><?php echo esc_html($cat_name); ?></span>
-                <?php endif; ?>
-
-                <a href="<?php echo esc_url($product->get_permalink()); ?>" class="ps__card-title">
-                    <?php echo esc_html($product->get_name()); ?>
-                </a>
-
-                <?php if ($show_rating && $product->get_average_rating() > 0) : ?>
-                    <div class="ps__card-rating">
-                        <?php echo wc_get_rating_html($product->get_average_rating(), $product->get_rating_count()); ?>
+                <div class="ps__card-left">
+                    <a href="<?php echo esc_url($product->get_permalink()); ?>" class="ps__card-title">
+                        <?php echo esc_html($product->get_name()); ?>
+                    </a>
+                    <div class="ps__card-price">
+                        <?php echo $product->get_price_html(); ?>
                     </div>
-                <?php endif; ?>
-
-                <div class="ps__card-price">
-                    <?php echo $product->get_price_html(); ?>
                 </div>
 
-                <?php if ($show_cart && $product->get_stock_status() === 'instock') : ?>
-                    <div class="ps__card-actions">
+                <?php if ($show_cart && $product->is_purchasable() && $product->is_in_stock()) : ?>
+                    <div class="ps__card-right">
                         <a href="<?php echo esc_url($product->add_to_cart_url()); ?>" class="ps__card-btn" data-product-id="<?php echo $product->get_id(); ?>">
-                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <circle cx="9" cy="21" r="1" />
-                                <circle cx="20" cy="21" r="1" />
-                                <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6" />
-                            </svg>
-                            ADD TO CART
+                            Add to Cart
                         </a>
                     </div>
                 <?php endif; ?>
@@ -108,6 +94,7 @@ $show_rating    = $attributes['showRating'] ?? true;
 $show_cart      = $attributes['showAddToCart'] ?? true;
 $autoplay       = $attributes['autoplay'] ?? false;
 $autoplay_delay = (int) ($attributes['autoplayDelay'] ?? 5000);
+$background_color = $attributes['backgroundColor'] ?? '#FFFDF8';
 $total_items    = $columns * $rows;
 
 // Query products
@@ -140,6 +127,7 @@ if (empty($products)) {
 
 $wrapper_attributes = get_block_wrapper_attributes([
     'class' => 'ps ps--' . $display_style . ' ps--align-' . $text_alignment,
+    'style' => 'background-color: ' . esc_attr($background_color) . ';'
 ]);
 
 // Slider data attributes
@@ -156,6 +144,7 @@ if ($display_style === 'slider') {
 ?>
 
 <div <?php echo $wrapper_attributes; ?><?php echo $slider_data; ?>>
+    <div class="ps__inner">
 
     <?php if (!empty($heading) || !empty($section_label)) : ?>
         <div class="ps__header">
@@ -216,5 +205,5 @@ if ($display_style === 'slider') {
             </a>
         </div>
     <?php endif; ?>
-
+    </div>
 </div>

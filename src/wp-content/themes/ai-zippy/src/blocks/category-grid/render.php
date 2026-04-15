@@ -3,8 +3,12 @@ $categories = $attributes['categories'] ?? [];
 $label = $attributes['label'] ?? '';
 $title = $attributes['title'] ?? '';
 $subtitle = $attributes['subtitle'] ?? '';
+$background_color = $attributes['backgroundColor'] ?? '#FFFDF8';
 
-$wrapper_attributes = get_block_wrapper_attributes(['class' => 'category-grid-section']);
+$wrapper_attributes = get_block_wrapper_attributes([
+    'class' => 'category-grid-section',
+    'style' => 'background-color: ' . esc_attr($background_color) . ';'
+]);
 ?>
 <section <?php echo $wrapper_attributes; ?>>
     <div class="section-inner">
@@ -17,13 +21,16 @@ $wrapper_attributes = get_block_wrapper_attributes(['class' => 'category-grid-se
             <?php foreach ($categories as $cat) : ?>
                 <a href="<?php echo esc_url($cat['link']); ?>" class="offer-card">
                     <div class="offer-card-img">
-                        <img src="<?php echo esc_url($cat['img']); ?>" alt="<?php echo esc_attr($cat['title']); ?>" loading="lazy">
-                        <?php if (!empty($cat['tag'])) : ?><span class="offer-card-tag"><?php echo esc_html($cat['tag']); ?></span><?php endif; ?>
+                        <?php if (!empty($cat['imgUrl'])) : ?>
+                            <img src="<?php echo esc_url($cat['imgUrl']); ?>" alt="<?php echo esc_attr($cat['title']); ?>" loading="lazy">
+                        <?php endif; ?>
                     </div>
                     <div class="offer-card-body">
                         <h3><?php echo esc_html($cat['title']); ?></h3>
-                        <p><?php echo esc_html($cat['desc']); ?></p>
-                        <div class="offer-card-link">Shop Now</div>
+                        <p><?php echo esc_html($cat['subtitle']); ?></p>
+                        <div class="offer-card-arrow">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+                        </div>
                     </div>
                 </a>
             <?php endforeach; ?>

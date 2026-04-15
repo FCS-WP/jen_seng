@@ -13,14 +13,25 @@
 		"spacing": { "margin": true, "padding": true }
 	},
 	"attributes": {
+		"align": {
+			"type": "string",
+			"default": "full"
+		},
 		"items": {
 			"type": "array",
+			"items": {
+				"type": "object"
+			},
 			"default": [
-				{ "icon": "⭐", "title": "30+ Years Experience", "sub": "Serving Singapore since 1993" },
-				{ "icon": "🫶", "title": "Personalised Advice", "sub": "One-on-one TCM guidance" },
-				{ "icon": "🌿", "title": "Wide Product Range", "sub": "Herbs, tonics & premium remedies" },
-				{ "icon": "🏪", "title": "Family-Owned Business", "sub": "A neighbourhood institution" }
+				{ "imgUrl": "", "imgId": 0, "title": "30+ Years Experience", "sub": "Serving Singapore since 1993" },
+				{ "imgUrl": "", "imgId": 0, "title": "Personalised Advice", "sub": "One-on-one TCM guidance" },
+				{ "imgUrl": "", "imgId": 0, "title": "Wide Product Range", "sub": "Herbs, tonics & premium remedies" },
+				{ "imgUrl": "", "imgId": 0, "title": "Family-Owned Business", "sub": "A neighbourhood institution" }
 			]
+		},
+		"backgroundColor": {
+			"type": "string",
+			"default": "#f5f0e8"
 		}
 	},
 	"textdomain": "ai-zippy",

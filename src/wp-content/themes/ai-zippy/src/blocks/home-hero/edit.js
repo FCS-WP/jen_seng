@@ -25,6 +25,8 @@ export default function Edit({ attributes, setAttributes }) {
 		secondaryBtnUrl,
 		mediaUrl,
 		mediaId,
+		bgMediaUrl,
+		bgMediaId,
 		badgeTitle,
 		badgeText,
 	} = attributes;
@@ -36,9 +38,35 @@ export default function Edit({ attributes, setAttributes }) {
 		});
 	};
 
+	const onSelectBgImage = (media) => {
+		setAttributes({
+			bgMediaId: media.id,
+			bgMediaUrl: media.url,
+		});
+	};
+
 	return (
 		<>
 			<InspectorControls>
+				<PanelBody title={__("Background", "ai-zippy")}>
+					<MediaUploadCheck>
+						<MediaUpload
+							onSelect={onSelectBgImage}
+							allowedTypes={["image"]}
+							value={bgMediaId}
+							render={({ open }) => (
+								<Button
+									onClick={open}
+									variant="secondary"
+									className={!bgMediaId ? "is-primary" : ""}
+								>
+									{!bgMediaId ? __("Select BG Image", "ai-zippy") : __("Replace BG Image", "ai-zippy")}
+								</Button>
+							)}
+						/>
+					</MediaUploadCheck>
+				</PanelBody>
+
 				<PanelBody title={__("Hero Content", "ai-zippy")}>
 					<TextControl
 						label={__("Eyebrow", "ai-zippy")}
@@ -113,7 +141,12 @@ export default function Edit({ attributes, setAttributes }) {
 				</PanelBody>
 			</InspectorControls>
 
-			<div {...useBlockProps({ className: "home-hero" })}>
+			<div 
+				{...useBlockProps({ 
+					className: "home-hero",
+					style: bgMediaUrl ? { backgroundImage: `url(${bgMediaUrl})` } : {}
+				})}
+			>
 				<div className="home-hero__content">
 					<RichText
 						tagName="div"

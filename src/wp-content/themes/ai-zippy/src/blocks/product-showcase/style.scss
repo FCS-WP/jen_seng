@@ -11,85 +11,53 @@ $ps-border: #e2d8cc;
 $ps-cream: #fffdf8;
 $ps-cream-2: #f5f0e8;
 
-$ps-radius: 12px;
+$ps-radius: 32px;
 $ps-transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 
 .wp-block-ai-zippy-product-showcase {
   margin: 0 auto;
   padding: 80px 32px !important;
-  max-width: 1200px;
   box-sizing: border-box;
+  width: 100%;
 
   // ---- ALIGNMENT ----
-  &--align-center {
+  &.ps--align-center {
     .ps__header-content {
       text-align: center;
       margin: 0 auto;
     }
-    .ps__label {
-      justify-content: center;
-      &::before {
-        display: none;
-      }
-    }
-    .ps__subtext {
-      margin: 0.5rem auto 0;
-    }
-    .ps__footer {
-      justify-content: center;
-    }
   }
+}
 
-  &--align-left {
-    .ps__header-content {
-      text-align: left;
-    }
-    .ps__label::before {
-      content: "";
-      width: 24px;
-      height: 2px;
-      background: $ps-red;
-      margin-right: 8px;
-    }
-  }
+.ps__inner {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.ps--align-center .ps__header {
+  justify-content: center;
 }
 
 // ---- HEADER ----
 .ps__header {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-end;
-  margin-bottom: 3rem;
-  gap: 2rem;
+  margin-bottom: 60px;
 }
 
 .ps__header-content {
-  flex: 1;
   max-width: 800px;
-}
-
-.ps__label {
-  font-size: 11px;
-  font-weight: 600;
-  letter-spacing: 2px;
-  text-transform: uppercase;
-  color: $ps-red;
-  margin-bottom: 12px;
-  display: flex;
-  align-items: center;
 }
 
 .ps__heading {
   font-family: "Lora", serif;
-  font-size: clamp(26px, 3vw, 38px);
+  font-size: clamp(32px, 4vw, 48px);
   font-weight: 700;
   color: $ps-dark;
   line-height: 1.2;
   margin: 0;
 
-  em {
+  strong, b {
     color: $ps-red;
-    font-style: normal;
+    font-weight: 700;
   }
 }
 
@@ -98,95 +66,34 @@ $ps-transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   color: $ps-mid;
   line-height: 1.7;
   margin-top: 1rem;
-  max-width: 600px;
-}
-
-.ps__nav {
-  display: flex;
-  gap: 0.5rem;
-  margin-bottom: 0.5rem;
-}
-
-.ps__nav-btn {
-  width: 44px;
-  height: 44px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border: 1px solid $ps-border;
-  border-radius: 50%;
-  background: #fff;
-  color: $ps-mid;
-  cursor: pointer;
-  transition: all $ps-transition;
-
-  &:hover {
-    border-color: $ps-red;
-    color: $ps-red;
-    background: $ps-cream;
-  }
 }
 
 // ---- GRID LAYOUT ----
 .ps__grid {
   display: grid;
-  gap: 1.5rem;
-}
-
-// ---- SLIDER ----
-.ps__swiper {
-  overflow: hidden;
-  padding-bottom: 3.5rem !important;
-
-  .swiper-slide {
-    height: auto;
-  }
-}
-
-.ps__pagination {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  text-align: center;
-
-  .swiper-pagination-bullet {
-    width: 8px;
-    height: 8px;
-    background: $ps-border;
-    opacity: 1;
-    transition: all $ps-transition;
-
-    &-active {
-      background: $ps-red;
-      width: 24px;
-      border-radius: 4px;
-    }
-  }
+  gap: 24px;
 }
 
 // ---- PRODUCT CARD ----
 .ps__card {
-  background: #fff;
-  border: 1px solid $ps-border;
-  border-radius: $ps-radius;
+  background: $ps-cream-2; // Light cream from image
+  border-radius: $ps-radius; // High rounding from mockup
   overflow: hidden;
   display: flex;
   flex-direction: column;
   height: 100%;
-  transition: all 0.25s ease;
+  transition: all 0.3s ease;
+  border: none;
 
   &:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 8px 30px rgba(46, 36, 32, 0.1);
-    border-color: $ps-red;
+    transform: translateY(-8px);
+    box-shadow: 0 12px 40px rgba(0,0,0,0.08);
   }
 }
 
 .ps__card-image {
   position: relative;
-  background: $ps-cream-2;
-  height: 200px;
+  height: 220px;
   overflow: hidden;
 
   > a {
@@ -200,127 +107,83 @@ $ps-transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   height: 100%;
   object-fit: cover;
   display: block;
-  transition: transform 0.4s ease;
-
-  .ps__card:hover & {
-    transform: scale(1.06);
-  }
 }
 
 .ps__badge {
   position: absolute;
-  top: 12px;
-  right: 12px;
-  padding: 4px 10px;
-  border-radius: 4px;
-  font-size: 10px;
+  top: 16px;
+  right: 16px;
+  padding: 6px 12px;
+  border-radius: 6px;
+  font-size: 11px;
   font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: 0.5px;
+  background: #8b1a1a;
+  color: #fff;
   z-index: 2;
-
-  &--sale {
-    background: #f5c842; // Yellow for sale
-    color: $ps-dark;
-  }
-
-  &--oos {
-    background: $ps-muted;
-    color: #fff;
-  }
 }
 
-// Card body
+// Card body split layout
 .ps__card-body {
-  padding: 20px;
+  padding: 24px;
   display: flex;
-  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  gap: 15px;
   flex: 1;
 }
 
-.ps__card-cat {
-  font-size: 11px;
-  font-weight: 600;
-  color: $ps-red;
-  letter-spacing: 0.8px;
-  text-transform: uppercase;
-  margin-bottom: 6px;
+.ps__card-left {
+  flex: 1;
+  text-align: left;
 }
 
 .ps__card-title {
+  display: block;
   font-family: "Lora", serif;
-  font-size: 17px;
-  font-weight: 600;
-  color: $ps-dark;
+  font-size: 18px;
+  font-weight: 700;
+  color: $ps-red; // Red from mockup
   text-decoration: none;
-  line-height: 1.35;
-  margin-bottom: 8px;
-  transition: color $ps-transition;
-
-  &:hover {
-    color: $ps-red;
-  }
-}
-
-.ps__card-rating {
-  margin-bottom: 12px;
-
-  .star-rating {
-    font-size: 14px;
-    color: #f5c842;
-  }
+  line-height: 1.3;
+  margin-bottom: 4px;
 }
 
 .ps__card-price {
-  font-family: "Lora", serif;
-  font-size: 19px;
+  font-size: 16px;
   font-weight: 700;
-  color: $ps-red;
-  margin-top: auto;
+  color: $ps-dark; // Price is black/dark in mockup
 
-  del {
-    color: $ps-muted;
-    font-size: 0.8em;
-    font-weight: 400;
-    margin-left: 0.5rem;
-  }
-
-  ins {
-    text-decoration: none;
+  ins { text-decoration: none; }
+  del { opacity: 0.5; font-size: 14px; margin-left: 5px; font-weight: 400; }
+  
+  .woocommerce-Price-amount {
+    color: inherit;
   }
 }
 
-.ps__card-actions {
-  margin-top: 1rem;
+.ps__card-right {
+  flex-shrink: 0;
 }
 
 .ps__card-btn {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 8px;
-  width: 100%;
-  padding: 12px;
-  background: #1c2434; // Deep navy from mockup's cart btn
+  padding: 10px 20px;
+  background: $ps-red;
   color: #fff !important;
   border: none;
-  border-radius: 8px;
-  font-size: 12px;
+  border-radius: 12px;
+  font-size: 13px;
   font-weight: 700;
-  letter-spacing: 0.5px;
-  text-transform: uppercase;
+  text-transform: none; // Match "Add to Cart" case
   text-decoration: none;
-  transition:
-    background 0.2s ease,
-    transform 0.2s ease;
+  transition: all 0.2s ease;
 
   &:hover {
-    background: #2a3449;
-    transform: translateY(-1px);
-  }
-
-  svg {
-    opacity: 0.8;
+    background: $ps-red-dk;
+    transform: scale(1.05);
   }
 }
 
@@ -352,28 +215,27 @@ $ps-transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 // ---- RESPONSIVE ----
-@media (max-width: 768px) {
-  .ps {
-    padding: 3rem 1rem;
-  }
-
-  .ps__header {
-    margin-bottom: 2rem;
-    flex-direction: column;
-    align-items: flex-start;
-  }
-
+@media (max-width: 1100px) {
   .ps__grid {
     grid-template-columns: repeat(2, 1fr) !important;
   }
-
-  .ps__card-image {
-    height: 180px;
-  }
 }
 
-@media (max-width: 480px) {
+@media (max-width: 600px) {
+  .wp-block-ai-zippy-product-showcase {
+    padding: 3rem 1rem !important;
+  }
   .ps__grid {
     grid-template-columns: 1fr !important;
+  }
+  .ps__card-body {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .ps__card-right {
+    width: 100%;
+  }
+  .ps__card-btn {
+    width: 100%;
   }
 }

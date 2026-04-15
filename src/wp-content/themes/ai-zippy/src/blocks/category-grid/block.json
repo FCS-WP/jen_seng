@@ -18,12 +18,17 @@
 		"subtitle": { "type": "string", "default": "From time-honoured loose herbs to premium tonics — find what your body needs." },
 		"categories": {
 			"type": "array",
+			"items": { "type": "object" },
 			"default": [
-				{ "img": "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=500", "tag": "Popular", "title": "Herbal Remedies", "desc": "Immunity boosters, heatiness relief, detox teas.", "link": "#" },
-				{ "img": "https://images.unsplash.com/photo-1611070964632-60dee62ba00b?w=500", "tag": "", "title": "Tonics & Supplements", "desc": "Bird's nest, cordyceps, ginseng and premium vitality tonics.", "link": "#" },
-				{ "img": "https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=500", "tag": "Speciality", "title": "Confinement Care", "desc": "Post-natal herbal soups and tonics for new mothers.", "link": "#" },
-				{ "img": "https://images.unsplash.com/photo-1563205764-cd984df2a2a4?w=500", "tag": "", "title": "Dried Herbs & Ingredients", "desc": "Dang Gui, Lingzhi, raw herbs and quality ingredients.", "link": "#" }
+				{ "imgUrl": "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=500", "imgId": 0, "title": "Herbal Remedies", "subtitle": "Immunity · Detox · Heatiness", "link": "#" },
+				{ "imgUrl": "https://images.unsplash.com/photo-1611070964632-60dee62ba00b?w=500", "imgId": 0, "title": "Tonics & Supplements", "subtitle": "Bird's Nest · Cordyceps · Ginseng", "link": "#" },
+				{ "imgUrl": "https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=500", "imgId": 0, "title": "Confinement Care", "subtitle": "Post-natal herbs & soups", "link": "#" },
+				{ "imgUrl": "https://images.unsplash.com/photo-1563205764-cd984df2a2a4?w=500", "imgId": 0, "title": "Dried Herbs & Ingredients", "subtitle": "Dang Gui · Lingzhi · Raw herbs", "link": "#" }
 			]
+		},
+		"backgroundColor": {
+			"type": "string",
+			"default": "#FFFDF8"
 		}
 	},
 	"textdomain": "ai-zippy",

@@ -45,16 +45,37 @@ export default function Edit({ attributes, setAttributes }) {
                     <div className="story-grid">
                         <div className="story-img">
                             <img src={image} alt="" />
-                            <div className="story-img-badge">
-                                <div className="num">{badgeYear}</div>
-                                <div className="txt">Est. in<br/>Serangoon</div>
-                            </div>
                         </div>
                         <div className="story-text">
-                            <RichText tagName="div" className="section-label" value={label} onChange={(val) => setAttributes({ label: val })} />
-                            <RichText tagName="h2" className="section-title" value={title} onChange={(val) => setAttributes({ title: val })} />
-                            <RichText tagName="p" className="section-sub" value={content} onChange={(val) => setAttributes({ content: val })} />
-                            <RichText tagName="div" className="story-quote" value={quote} onChange={(val) => setAttributes({ quote: val })} />
+                            <RichText 
+                                tagName="div" 
+                                className="section-label" 
+                                value={label} 
+                                onChange={(val) => setAttributes({ label: val })} 
+                                placeholder={__("Label (Red)", "ai-zippy")}
+                            />
+                            <RichText 
+                                tagName="h2" 
+                                className="section-title" 
+                                value={title} 
+                                onChange={(val) => setAttributes({ title: val })} 
+                                placeholder={__("Title (Black)", "ai-zippy")}
+                            />
+                            <RichText 
+                                tagName="p" 
+                                className="section-sub" 
+                                value={content} 
+                                onChange={(val) => setAttributes({ content: val })} 
+                                placeholder={__("Description...", "ai-zippy")}
+                            />
+                            <div className="story-cta">
+                                <RichText 
+                                    tagName="span" 
+                                    className="btn-primary" 
+                                    value={ctaText} 
+                                    onChange={(val) => setAttributes({ ctaText: val })} 
+                                />
+                            </div>
                         </div>
                     </div>
                 </div>
