@@ -13,14 +13,25 @@
 		"spacing": { "margin": true, "padding": true }
 	},
 	"attributes": {
-		"label": { "type": "string", "default": "Why Choose Us" },
-		"title": { "type": "string", "default": "Why Thousands of Singaporeans Trust Jen Seng" },
+		"label": { "type": "string", "default": "" },
+		"title": { "type": "string", "default": "Why Thousands of Singaporeans Trust <em>Jen Seng</em>" },
+		"sectionBackgroundColor": { "type": "string", "default": "#FAF5F0" },
+		"cardBackgroundColor": { "type": "string", "default": "#EFE6D5" },
 		"usps": {
 			"type": "array",
+			"items": {
+				"type": "object",
+				"properties": {
+					"iconUrl": { "type": "string" },
+					"iconId": { "type": "number" },
+					"title": { "type": "string" },
+					"desc": { "type": "string" }
+				}
+			},
 			"default": [
-				{ "icon": "🫶", "title": "Personalised Advice", "desc": "One-on-one guidance from experienced TCM practitioners." },
-				{ "icon": "🌿", "title": "Wide Product Range", "desc": "From loose herbs and ginseng to bird's nest and cordyceps." },
-				{ "icon": "🏪", "title": "Trusted Since 1993", "desc": "Over 30 years serving Serangoon Central — a neighbourhood institution." }
+				{ "iconUrl": "", "iconId": 0, "title": "Personalised Advice", "desc": "One-on-one guidance from experienced TCM practitioners — tailored to your specific health needs, symptoms, and lifestyle." },
+				{ "iconUrl": "", "iconId": 0, "title": "Wide Product Range", "desc": "From loose herbs and ginseng to bird's nest, cordyceps, medicated oils and full confinement packages — everything under one roof." },
+				{ "iconUrl": "", "iconId": 0, "title": "Trusted Since 1993", "desc": "Over 30 years serving Serangoon Central — a neighbourhood institution built on honest remedies and care that goes beyond the transaction." }
 			]
 		}
 	},

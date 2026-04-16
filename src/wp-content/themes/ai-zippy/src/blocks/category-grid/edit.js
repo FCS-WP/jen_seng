@@ -5,21 +5,37 @@ import {
   InspectorControls,
   MediaUpload,
   MediaUploadCheck,
+  ColorPalette,
 } from "@wordpress/block-editor";
 import { PanelBody, TextControl, Button } from "@wordpress/components";
 
 export default function Edit({ attributes, setAttributes }) {
-  const { label, title, subtitle, categories } = attributes;
+  const { label, title, subtitle, categories, backgroundColor } = attributes;
 
-  const updateCategory = (index, key, value) => {
-    const newCats = [...categories];
-    newCats[index][key] = value;
+  const updateCategory = (index, data) => {
+    const newCats = categories.map((cat, i) => {
+      if (i === index) {
+        return { ...cat, ...data };
+      }
+      return cat;
+    });
     setAttributes({ categories: newCats });
   };
+
+  const blockProps = useBlockProps({
+    className: "category-grid",
+    style: { backgroundColor: backgroundColor }
+  });
 
   return (
     <>
       <InspectorControls>
+        <PanelBody title={__("Background", "ai-zippy")}>
+            <ColorPalette
+                value={backgroundColor}
+                onChange={(val) => setAttributes({ backgroundColor: val })}
+            />
+        </PanelBody>
         <PanelBody title={__("Categories", "ai-zippy")}>
           {categories.map((cat, index) => (
             <div
@@ -32,14 +48,14 @@ export default function Edit({ attributes, setAttributes }) {
             >
               <MediaUploadCheck>
                 <MediaUpload
-                  onSelect={(media) => updateCategory(index, "img", media.url)}
+                  onSelect={(media) => updateCategory(index, { imgUrl: media.url, imgId: media.id })}
                   allowedTypes={["image"]}
-                  value={cat.img}
+                  value={cat.imgId}
                   render={({ open }) => (
                     <div style={{ marginBottom: "10px" }}>
-                      {cat.img && (
+                      {cat.imgUrl && (
                         <img
-                          src={cat.img}
+                          src={cat.imgUrl}
                           style={{
                             width: "100%",
                             height: "auto",
@@ -51,7 +67,7 @@ export default function Edit({ attributes, setAttributes }) {
                         />
                       )}
                       <Button isSecondary onClick={open}>
-                        {cat.img
+                        {cat.imgUrl
                           ? __("Replace Image", "ai-zippy")
                           : __("Select Image", "ai-zippy")}
                       </Button>
@@ -62,28 +78,23 @@ export default function Edit({ attributes, setAttributes }) {
               <TextControl
                 label={__(`Title ${index + 1}`, "ai-zippy")}
                 value={cat.title}
-                onChange={(val) => updateCategory(index, "title", val)}
+                onChange={(val) => updateCategory(index, { title: val })}
               />
               <TextControl
-                label={__(`Description ${index + 1}`, "ai-zippy")}
-                value={cat.desc}
-                onChange={(val) => updateCategory(index, "desc", val)}
-              />
-              <TextControl
-                label={__(`Tag ${index + 1}`, "ai-zippy")}
-                value={cat.tag}
-                onChange={(val) => updateCategory(index, "tag", val)}
+                label={__(`Subtitle ${index + 1}`, "ai-zippy")}
+                value={cat.subtitle}
+                onChange={(val) => updateCategory(index, { subtitle: val })}
               />
               <TextControl
                 label={__(`Link ${index + 1}`, "ai-zippy")}
                 value={cat.link}
-                onChange={(val) => updateCategory(index, "link", val)}
+                onChange={(val) => updateCategory(index, { link: val })}
               />
             </div>
           ))}
         </PanelBody>
       </InspectorControls>
-      <div {...useBlockProps({ className: "category-grid" })}>
+      <div {...blockProps}>
         <div className="section-inner">
           <div className="text-center">
             <RichText
@@ -91,31 +102,49 @@ export default function Edit({ attributes, setAttributes }) {
               className="section-label"
               value={label}
               onChange={(val) => setAttributes({ label: val })}
+              placeholder={__("Label...", "ai-zippy")}
             />
             <RichText
               tagName="h2"
               className="section-title"
               value={title}
               onChange={(val) => setAttributes({ title: val })}
+              placeholder={__("Title...", "ai-zippy")}
             />
             <RichText
               tagName="p"
               className="section-sub"
               value={subtitle}
               onChange={(val) => setAttributes({ subtitle: val })}
+              placeholder={__("Subtitle text...", "ai-zippy")}
             />
           </div>
           <div className="offer-grid">
             {categories.map((cat, index) => (
               <div key={index} className="offer-card">
                 <div className="offer-card-img">
-                  <img src={cat.img} alt="" />
-                  {cat.tag && <span className="offer-card-tag">{cat.tag}</span>}
+                  {cat.imgUrl ? (
+                    <img src={cat.imgUrl} alt="" />
+                  ) : (
+                    <div className="placeholder-img" style={{ height: '200px', background: '#eee' }} />
+                  )}
                 </div>
                 <div className="offer-card-body">
-                  <h3>{cat.title}</h3>
-                  <p>{cat.desc}</p>
-                  <div className="offer-card-link">Shop Now</div>
+                  <RichText
+                    tagName="h3"
+                    value={cat.title}
+                    onChange={(val) => updateCategory(index, { title: val })}
+                    placeholder={__("Category Title...", "ai-zippy")}
+                  />
+                  <RichText
+                    tagName="p"
+                    value={cat.subtitle}
+                    onChange={(val) => updateCategory(index, { subtitle: val })}
+                    placeholder={__("Category Subtitle...", "ai-zippy")}
+                  />
+                  <div className="offer-card-arrow">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+                  </div>
                 </div>
               </div>
             ))}

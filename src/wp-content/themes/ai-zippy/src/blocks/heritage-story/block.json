@@ -20,7 +20,8 @@
 		"content": { "type": "string", "default": "Our story began when two sisters and a spouse opened a small traditional medicine hall in Serangoon — full of heart, herbs, and the belief that good health starts with care." },
 		"quote": { "type": "string", "default": "Every jar of herbs, every remedy, and every conversation carried the warmth of family." },
 		"ctaText": { "type": "string", "default": "Read Our Full Story →" },
-		"ctaUrl": { "type": "string", "default": "#" }
+		"ctaUrl": { "type": "string", "default": "#" },
+		"backgroundColor": { "type": "string", "default": "#FAF5F0" }
 	},
 	"textdomain": "ai-zippy",
 	"editorScript": "file:./index.js",

@@ -7,16 +7,30 @@
 	"category": "ai-zippy",
 	"icon": "products",
 	"description": "Display WooCommerce products in a grid or slider. Choose category, brand, layout, and number of items.",
-	"keywords": ["product", "shop", "grid", "slider", "carousel", "woocommerce"],
+	"keywords": [
+		"product",
+		"shop",
+		"grid",
+		"slider",
+		"carousel",
+		"woocommerce"
+	],
 	"supports": {
 		"html": false,
-		"align": ["wide", "full"],
+		"align": [
+			"wide",
+			"full"
+		],
 		"spacing": {
 			"margin": true,
 			"padding": true
 		}
 	},
 	"attributes": {
+		"align": {
+			"type": "string",
+			"default": "full"
+		},
 		"heading": {
 			"type": "string",
 			"default": ""
@@ -40,7 +54,10 @@
 		"displayStyle": {
 			"type": "string",
 			"default": "grid",
-			"enum": ["grid", "slider"]
+			"enum": [
+				"grid",
+				"slider"
+			]
 		},
 		"orderby": {
 			"type": "string",
@@ -85,6 +102,10 @@
 		"textAlignment": {
 			"type": "string",
 			"default": "center"
+		},
+		"backgroundColor": {
+			"type": "string",
+			"default": "#FFFDF8"
 		}
 	},
 	"textdomain": "ai-zippy",

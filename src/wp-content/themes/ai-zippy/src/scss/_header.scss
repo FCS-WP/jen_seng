@@ -6,32 +6,68 @@ header.site-header {
   top: 0;
   z-index: 100;
   transition: box-shadow $transition-speed ease;
+  background-color: #8b1a1a !important; // Jen Seng Red
 
   &.is-scrolled {
     box-shadow: $box-shadow-lg;
   }
 }
 
+.container-inner {
+  display: flex !important;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 20px;
+
+  @media (max-width: 781px) {
+    padding: 0 10px;
+  }
+}
+
 .announce-bar {
-  background-color: var(--wp--preset--color--secondary);
-  color: var(--wp--preset--color--text);
-  border-bottom: 1px solid #e8d890;
+  background-color: #f5c842; // Gold
+  color: #2e2420;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
 
   p {
     margin: 0;
     color: inherit;
+    font-weight: 600;
   }
 }
 
 .nav-logo {
+  display: flex;
+  align-items: center;
+  color: #fff !important;
+  order: 1;
+  text-decoration: none;
+
+  @media (max-width: 781px) {
+    order: 2;
+    flex: 0 0 auto;
+    justify-content: center;
+  }
+
   &-icon {
+    display: block;
     p {
       margin: 0;
       font-size: 20px;
+      color: #f5c842;
     }
   }
 
   &-text {
+    margin-left: 12px;
+
+    @media (max-width: 781px) {
+      display: none !important; // Hide text on mobile
+    }
+
     .wp-block-site-title {
       font-family: var(--wp--preset--font-family--heading);
       font-size: 16px;
@@ -39,7 +75,7 @@ header.site-header {
       margin: 0;
 
       a {
-        color: inherit;
+        color: #fff !important;
         text-decoration: none;
       }
     }
@@ -48,28 +84,104 @@ header.site-header {
       margin: 0;
       letter-spacing: 1.2px;
       text-transform: uppercase;
+      color: rgba(255, 255, 255, 0.8) !important;
+      font-size: 10px;
     }
   }
 }
 
 // Navigation links
 .wp-block-navigation {
+  order: 2;
+  flex: 1;
+  display: flex;
+  justify-content: center;
+
+  @media (max-width: 781px) {
+    order: 1;
+    flex: 1;
+    justify-content: flex-start;
+  }
+
   a {
-    color: $c-mid !important;
+    color: #f5c842 !important; // Gold
     padding: 0.5rem 1rem;
     transition: all $transition-speed ease;
 
     &:hover {
-      color: $c-primary !important;
-      background: var(--wp--preset--color--cream-dark);
+      color: #fff !important;
+      background: rgba(255, 255, 255, 0.1);
       border-radius: 6px;
     }
   }
 
   .current-menu-item > a,
   .current-menu-ancestor > a {
-    color: $c-primary !important;
+    color: #fff !important;
     font-weight: 600;
+  }
+
+  // Mobile menu button (Hamburger)
+  .wp-block-navigation__responsive-container-open {
+    display: none;
+
+    @media (max-width: 781px) {
+      display: flex;
+      color: #f5c842 !important;
+      padding: 0;
+      width: 40px;
+      height: 40px;
+      align-items: center;
+      justify-content: center;
+
+      svg {
+        width: 24px !important;
+        height: 24px !important;
+      }
+    }
+  }
+
+  // Mobile Overlay
+  @media (max-width: 781px) {
+    .wp-block-navigation__responsive-container {
+      &.is-menu-open {
+        background-color: #8b1a1a !important; // Consistent with header
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        padding: 2rem;
+        z-index: 9999;
+
+        .wp-block-navigation__responsive-container-content {
+          gap: 1.5rem;
+          padding-top: 4rem;
+          align-items: flex-start;
+
+          .wp-block-navigation-item {
+            a {
+              font-size: 1.25rem;
+              color: #f5c842 !important;
+
+              &:hover {
+                color: #fff !important;
+              }
+            }
+          }
+        }
+
+        .wp-block-navigation__responsive-container-close {
+          top: 20px;
+          right: 20px;
+          color: #f5c842 !important;
+
+          svg {
+            width: 32px !important;
+            height: 32px !important;
+          }
+        }
+      }
+    }
   }
 }
 
@@ -77,15 +189,15 @@ header.site-header {
 .nav-icons {
   display: flex;
   align-items: center;
-  gap: 6px; // Tighter gap between icons
+  gap: 6px;
   margin-left: 12px;
+  order: 3;
 
-  .nav-icon-wrapper {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 40px;
-    height: 40px;
+  @media (max-width: 781px) {
+    margin-left: 0;
+    flex: 1;
+    justify-content: flex-end;
+    gap: 4px; // Tighten internal gap to stay further from logo
   }
 
   .nav-icon-btn {
@@ -95,7 +207,7 @@ header.site-header {
     align-items: center;
     justify-content: center;
     border-radius: 8px;
-    color: $c-mid;
+    color: #fff !important;
     transition: all $transition-speed ease;
     background: transparent;
     border: none;
@@ -103,8 +215,8 @@ header.site-header {
     padding: 0;
 
     &:hover {
-      background: var(--wp--preset--color--cream-dark);
-      color: $c-primary;
+      background: rgba(255, 255, 255, 0.1);
+      color: #f5c842 !important;
     }
 
     svg {
@@ -128,13 +240,13 @@ header.site-header {
         align-items: center;
         justify-content: center;
         border-radius: 8px;
-        color: $c-mid;
+        color: #fff !important;
         transition: all $transition-speed ease;
         text-decoration: none;
 
         &:hover {
-          background: var(--wp--preset--color--cream-dark);
-          color: $c-primary;
+          background: rgba(255, 255, 255, 0.1);
+          color: #f5c842 !important;
         }
 
         svg {
@@ -147,14 +259,31 @@ header.site-header {
     }
   }
 
-  // Core search block styling as an icon
   .nav-search {
     position: relative;
     display: flex;
     align-items: center;
 
+    @media (max-width: 781px) {
+      display: none !important; // Hide search on mobile
+    }
+
     .search-toggle {
       z-index: 2;
+      color: #fff !important;
+      background: transparent;
+      border: none;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 40px;
+      height: 40px;
+      transition: all $transition-speed ease;
+
+      &:hover {
+        color: #f5c842 !important;
+      }
     }
 
     .search-expand-container {
@@ -166,7 +295,7 @@ header.site-header {
       background: #fff;
       border-radius: 8px;
       box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-      border: 1px solid var(--wp--preset--color--border);
+      border: 1px solid rgba(0, 0, 0, 0.1);
       max-width: 0;
       opacity: 0;
       overflow: hidden;
@@ -175,19 +304,28 @@ header.site-header {
 
       .wp-block-search {
         margin: 0;
+        width: 300px;
 
         .wp-block-search__inside-wrapper {
-          padding: 4px 8px;
+          padding: 4px 12px;
           border: none;
+          display: flex;
+          align-items: center;
         }
 
         .wp-block-search__input {
           border: none;
           outline: none;
-          width: 200px;
-          height: 32px;
+          width: 240px;
+          height: 36px;
           font-size: 14px;
           background: transparent;
+          color: #2e2420;
+          padding: 0;
+
+          &::placeholder {
+            color: #a8998e;
+          }
         }
 
         .wp-block-search__button {
@@ -211,21 +349,24 @@ header.site-header {
     height: 40px;
     border-radius: 8px;
     padding: 0 !important;
-    background: transparent;
+    background: transparent !important;
     border: none;
     display: flex;
     align-items: center;
     justify-content: center;
     transition: all $transition-speed ease;
+    color: #fff !important;
 
     &:hover {
-      background: var(--wp--preset--color--cream-dark) !important;
+      background: rgba(255, 255, 255, 0.1) !important;
+      color: #f5c842 !important;
     }
 
     .wc-block-mini-cart__icon {
       width: 20px !important;
       height: 20px !important;
       margin: 0;
+      fill: currentColor !important;
     }
   }
 }

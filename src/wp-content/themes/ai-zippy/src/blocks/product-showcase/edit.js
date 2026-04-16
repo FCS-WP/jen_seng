@@ -3,6 +3,7 @@ import {
   useBlockProps,
   InspectorControls,
   RichText,
+  ColorPalette,
 } from "@wordpress/block-editor";
 import {
   PanelBody,
@@ -34,6 +35,7 @@ export default function Edit({ attributes, setAttributes }) {
     viewAllLabel,
     viewAllUrl,
     textAlignment,
+    backgroundColor
   } = attributes;
 
   const [categories, setCategories] = useState([]);
@@ -87,11 +89,19 @@ export default function Edit({ attributes, setAttributes }) {
       .finally(() => setLoading(false));
   }, [category, brand, orderby, totalItems]);
 
-  const blockProps = useBlockProps();
+  const blockProps = useBlockProps({
+    style: { backgroundColor: backgroundColor }
+  });
 
   return (
     <>
       <InspectorControls>
+        <PanelBody title={__("Appearance", "ai-zippy")}>
+            <ColorPalette
+                value={backgroundColor}
+                onChange={(val) => setAttributes({ backgroundColor: val })}
+            />
+        </PanelBody>
         <PanelBody title={__("Layout", "ai-zippy")} initialOpen>
           <SelectControl
             label={__("Display Style", "ai-zippy")}
@@ -285,18 +295,22 @@ export default function Edit({ attributes, setAttributes }) {
                 <div key={p.id} className="ps-editor__card">
                   <div className="ps-editor__card-img">
                     <img src={p.image} alt={p.name} />
-                    {p.on_sale && showSaleBadge && (
-                      <span className="ps-editor__sale">Sale</span>
-                    )}
                   </div>
                   <div className="ps-editor__card-info">
-                    <span className="ps-editor__card-name">{p.name}</span>
-                    <span
-                      className="ps-editor__card-price"
-                      dangerouslySetInnerHTML={{
-                        __html: p.price_html,
-                      }}
-                    />
+                    <div className="ps-editor__card-left">
+                        <span className="ps-editor__card-name">{p.name}</span>
+                        <span
+                        className="ps-editor__card-price"
+                        dangerouslySetInnerHTML={{
+                            __html: p.price_html,
+                        }}
+                        />
+                    </div>
+                    {showAddToCart && (
+                        <div className="ps-editor__card-right">
+                            <div className="ps-editor__add-btn">Add to Cart</div>
+                        </div>
+                    )}
                   </div>
                 </div>
               ))}

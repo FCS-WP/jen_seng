@@ -13,16 +13,17 @@
 		"spacing": { "margin": true, "padding": true }
 	},
 	"attributes": {
-		"mapImage": { "type": "string", "default": "https://images.unsplash.com/photo-1569144157591-c60f3f82f137?w=700" },
-		"label": { "type": "string", "default": "Find Us" },
-		"title": { "type": "string", "default": "Find Us at Serangoon Central" },
-		"address": { "type": "string", "default": "Blk 264 Serangoon Central, #01-231, Singapore 550264" },
-		"hours": { "type": "string", "default": "Monday to Sunday: 9:00am – 5:00pm" },
-		"email": { "type": "string", "default": "jensengserangoon@outlook.com" },
-		"dirText": { "type": "string", "default": "Get Directions →" },
-		"dirUrl": { "type": "string", "default": "#" },
-		"contactText": { "type": "string", "default": "Contact Us" },
-		"contactUrl": { "type": "string", "default": "#" }
+		"mapImage": { "type": "string", "default": "" },
+		"mapEmbed": { "type": "string", "default": "" },
+		"label": { "type": "string", "default": "" },
+		"title": { "type": "string", "default": "Find Us At <em>Serangoon Central</em>" },
+		"address": { "type": "string", "default": "Blk 264 Serangoon Central, #01-231, S550264" },
+		"hours": { "type": "string", "default": "Mon – Sun: 9am to 5pm" },
+		"addressIconUrl": { "type": "string", "default": "" },
+		"hoursIconUrl": { "type": "string", "default": "" },
+		"dirText": { "type": "string", "default": "Get Directions" },
+		"dirUrl": { "type": "string", "default": "https://maps.google.com" },
+		"sectionBackgroundColor": { "type": "string", "default": "#FAF5F0" }
 	},
 	"textdomain": "ai-zippy",
 	"editorScript": "file:./index.js",
