@@ -30,5 +30,11 @@ class ShopAssets
             'ai-zippy-shop-filter',
             'src/wp-content/themes/ai-zippy/src/js/shop-filter/index.jsx'
         );
+
+        wp_localize_script('ai-zippy-shop-filter', 'zippyShopData', [
+            'restNonce'  => wp_create_nonce('wp_rest'),
+            'storeNonce' => wp_create_nonce('wc_store_api'),
+            'homeUrl'    => home_url('/'),
+        ]);
     }
 }

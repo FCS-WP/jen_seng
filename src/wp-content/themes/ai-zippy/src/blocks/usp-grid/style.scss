@@ -1,91 +1,112 @@
 @use "../../scss/variables" as *;
 
-.wp-block-ai-zippy-usp-grid {
-    background: #fff;
-    padding: 72px 32px;
+.usp-section {
+  padding: 80px 24px;
+  background-color: #faf5f0; // Default fallback
 
-    .section-inner {
-        max-width: 1200px;
-        margin: 0 auto;
+  .section-inner {
+    max-width: 1320px;
+    margin: 0 auto;
+  }
+
+  .text-center {
+    text-align: center;
+    margin-bottom: 60px;
+  }
+
+  .section-label {
+    font-size: 14px;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: #8b1a1a;
+    margin-bottom: 16px;
+    letter-spacing: 0.1em;
+  }
+
+  .section-title {
+    font-family: "Lora", serif;
+    font-size: clamp(32px, 4vw, 48px);
+    font-weight: 700;
+    color: #2e2420;
+    line-height: 1.2;
+    margin: 0;
+
+    em {
+      color: #8b1a1a;
+      font-style: normal;
     }
+  }
 
-    .text-center {
-        text-align: center;
-        margin-bottom: 48px;
-        .section-label { justify-content: center; &::before { display: none; } }
-        .section-sub { margin: 0 auto; }
+  .usp-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 32px;
+  }
+
+  .usp-card {
+    padding: 40px;
+    border-radius: 24px;
+    background-color: #efe6d5; // Default fallback
+    transition:
+      transform 0.3s ease,
+      box-shadow 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    text-align: left;
+    border: none;
+
+    &:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 12px 30px rgba(46, 36, 32, 0.1);
     }
+  }
 
-    .section-label {
-        font-size: 11px;
-        font-weight: 600;
-        letter-spacing: 2px;
-        text-transform: uppercase;
-        color: #8B1A1A;
-        margin-bottom: 12px;
-        display: flex;
-        align-items: center;
-        gap: 8px;
+  .usp-icon {
+    margin-bottom: 24px;
+    width: 64px;
+    height: 64px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    font-size: 32px;
+
+    img {
+      max-width: 100%;
+      height: auto;
+      object-fit: contain;
     }
+  }
 
-    .section-title {
-        font-family: 'Lora', serif;
-        font-size: clamp(26px, 3vw, 38px);
-        font-weight: 700;
-        color: #2E2420;
-        line-height: 1.2;
-        margin: 0;
-        em { color: #8B1A1A; font-style: normal; }
-    }
+  .usp-card h3 {
+    font-family: "Lora", serif;
+    font-size: 22px;
+    font-weight: 700;
+    color: #8b1a1a;
+    margin: 0 0 12px 0;
+  }
 
+  .usp-card p {
+    font-size: 15px;
+    color: #4a3f35;
+    line-height: 1.6;
+    margin: 0;
+    font-weight: 400;
+  }
+
+  @media (max-width: 992px) {
     .usp-grid {
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        gap: 28px;
+      grid-template-columns: repeat(2, 1fr);
     }
+  }
 
+  @media (max-width: 640px) {
+    padding: 60px 20px;
+    .usp-grid {
+      grid-template-columns: 1fr;
+    }
     .usp-card {
-        background: #fff;
-        border: 1px solid #E2D8CC;
-        border-radius: 12px;
-        padding: 32px;
-        transition: all .25s;
-
-        &:hover {
-            border-color: #8B1A1A;
-            box-shadow: 0 2px 16px rgba(46,36,32,0.08);
-        }
+      padding: 32px;
     }
-
-    .usp-icon {
-        width: 52px;
-        height: 52px;
-        border-radius: 12px;
-        background: #F5EAEA;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 24px;
-        margin-bottom: 20px;
-    }
-
-    .usp-card h3 {
-        font-family: 'Lora', serif;
-        font-size: 18px;
-        font-weight: 600;
-        color: #2E2420;
-        margin: 0 0 12px 0;
-    }
-
-    .usp-card p {
-        font-size: 14px;
-        color: #6B5E56;
-        line-height: 1.7;
-        margin: 0;
-    }
-
-    @media (max-width: 768px) {
-        padding: 48px 20px;
-        .usp-grid { grid-template-columns: 1fr; }
-    }
+  }
 }

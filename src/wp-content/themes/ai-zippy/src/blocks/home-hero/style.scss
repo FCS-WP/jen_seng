@@ -1,219 +1,242 @@
 @use "../../scss/variables" as *;
 
 .wp-block-ai-zippy-home-hero {
-    --hero-red: #8B1A1A;
-    --hero-red-dk: #6A1010;
-    --hero-red-lt: #F5EAEA;
-    --hero-yellow: #F5C842;
-    --hero-yellow-lt: #FDF8E1;
-    --hero-cream: #FFFDF8;
-    --hero-cream-2: #F5F0E8;
-    --hero-dark: #2E2420;
-    --hero-mid: #6B5E56;
-    --hero-muted: #A8998E;
-    --hero-border: #E2D8CC;
-    --hero-white: #FFFFFF;
-    --hero-shadow-lg: 0 8px 40px rgba(46,36,32,0.12);
+  --hero-red: #8b1a1a;
+  --hero-red-dk: #6a1010;
+  --hero-red-lt: #f5eaea;
+  --hero-yellow: #f5c842;
+  --hero-yellow-lt: #fdf8e1;
+  --hero-cream: #fffdf8;
+  --hero-cream-2: #f5f0e8;
+  --hero-dark: #2e2420;
+  --hero-mid: #6b5e56;
+  --hero-muted: #a8998e;
+  --hero-border: #e2d8cc;
+  --hero-white: #ffffff;
+  --hero-shadow-lg: 0 8px 40px rgba(46, 36, 32, 0.12);
 
-    background-color: var(--hero-cream-2);
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    padding: 0;
+  background-color: var(--hero-cream-2);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  padding: 0;
+  min-height: 560px;
+  position: relative;
+  overflow: hidden;
+
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(
+      90deg,
+      rgba(255, 253, 248, 0.85) 0%,
+      rgba(255, 253, 248, 0.4) 100%
+    );
+    pointer-events: none;
+  }
+
+  .home-hero__inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    width: 100%;
     min-height: 560px;
     position: relative;
-    overflow: hidden;
+    z-index: 2;
+  }
 
-    &::before {
-        content: "";
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        background: linear-gradient(90deg, rgba(255,253,248,0.85) 0%, rgba(255,253,248,0.4) 100%);
-        pointer-events: none;
+  .home-hero__content {
+    position: relative;
+    flex: 1;
+    padding: 72px 48px; // Reduced side padding since we are in container
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .home-hero__eyebrow {
+    display: none; // Hidden as per image, but kept in code for flexibility
+  }
+
+  .home-hero__title {
+    font-family: "Lora", serif;
+    font-size: clamp(36px, 5vw, 64px);
+    font-weight: 700;
+    color: #8b1a1a; // Dark red/brown from image
+    line-height: 1.1;
+    margin: 0 0 24px 0;
+    max-width: 600px;
+  }
+
+  .home-hero__subtitle {
+    font-size: 16px;
+    color: #6b5e56;
+    line-height: 1.6;
+    margin-bottom: 40px;
+    max-width: 480px;
+  }
+
+  .home-hero__ctas {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+    align-items: center;
+
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background: #8b1a1a; // Solid dark red
+      color: #ffffff;
+      font-size: 15px;
+      font-weight: 600;
+      padding: 14px 36px;
+      border-radius: 8px;
+      transition: all 0.3s;
+      border: none;
+      text-decoration: none;
+
+      &:hover {
+        background: #6a1010;
+        transform: translateY(-2px);
+        box-shadow: 0 6px 20px rgba(139, 26, 26, 0.3);
+      }
     }
 
+    .btn-outline {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background: transparent;
+      color: #8b1a1a;
+      font-size: 15px;
+      font-weight: 600;
+      padding: 14px 36px;
+      border-radius: 8px;
+      border: 1.5px solid #8b1a1a;
+      transition: all 0.3s;
+      text-decoration: none;
+
+      &:hover {
+        background: rgba(139, 26, 26, 0.05);
+        transform: translateY(-2px);
+      }
+    }
+  }
+
+  .home-hero__trust {
+    display: none; // Hidden as per image
+  }
+
+  .home-hero__img {
+    position: relative;
+    flex: 1;
+    padding-right: 24px;
+    z-index: 2;
+    display: flex;
+    justify-content: flex-end;
+
+    img {
+      width: 100%;
+      max-width: 580px;
+      height: auto;
+      aspect-ratio: 4/3;
+      object-fit: cover;
+      border-radius: 32px; // Large rounded corners as per image
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
+    }
+  }
+
+  .home-hero__img-badge {
+    position: absolute;
+    bottom: 32px;
+    left: -16px;
+    background: var(--hero-white);
+    border-radius: 12px;
+    padding: 14px 18px;
+    box-shadow: var(--hero-shadow-lg);
+    display: flex;
+    align-items: center;
+    gap: 12px;
+
+    .big {
+      font-family: "Lora", serif;
+      font-size: 28px;
+      font-weight: 700;
+      color: var(--hero-red);
+      line-height: 1;
+    }
+
+    .small {
+      font-size: 12px;
+      color: var(--hero-mid);
+      line-height: 1.4;
+    }
+  }
+
+  @media (max-width: 1024px) {
+    text-align: center;
+    padding-top: 40px;
+    padding-bottom: 40px;
+    min-height: auto;
+
     .home-hero__inner {
-        max-width: 1200px;
-        margin: 0 auto;
-        display: flex;
-        align-items: center;
-        width: 100%;
-        min-height: 560px;
-        position: relative;
-        z-index: 2;
+      flex-direction: column;
+      min-height: auto;
     }
 
     .home-hero__content {
-        position: relative;
-        flex: 1;
-        padding: 72px 48px; // Reduced side padding since we are in container
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-    }
-
-    .home-hero__eyebrow {
-        display: none; // Hidden as per image, but kept in code for flexibility
-    }
-
-    .home-hero__title {
-        font-family: 'Lora', serif;
-        font-size: clamp(36px, 5vw, 64px);
-        font-weight: 700;
-        color: #8B1A1A; // Dark red/brown from image
-        line-height: 1.1;
-        margin: 0 0 24px 0;
-        max-width: 600px;
-    }
-
-    .home-hero__subtitle {
-        font-size: 16px;
-        color: #6B5E56;
-        line-height: 1.6;
-        margin-bottom: 40px;
-        max-width: 480px;
-    }
-
-    .home-hero__ctas {
-        display: flex;
-        gap: 20px;
-        flex-wrap: wrap;
-        align-items: center;
-
-        .btn-primary {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            background: #8B1A1A; // Solid dark red
-            color: #FFFFFF;
-            font-size: 15px;
-            font-weight: 600;
-            padding: 14px 36px;
-            border-radius: 8px;
-            transition: all .3s;
-            border: none;
-            text-decoration: none;
-
-            &:hover {
-                background: #6A1010;
-                transform: translateY(-2px);
-                box-shadow: 0 6px 20px rgba(139,26,26,0.3);
-            }
-        }
-
-        .btn-outline {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            background: transparent;
-            color: #8B1A1A;
-            font-size: 15px;
-            font-weight: 600;
-            padding: 14px 36px;
-            border-radius: 8px;
-            border: 1.5px solid #8B1A1A;
-            transition: all .3s;
-            text-decoration: none;
-
-            &:hover {
-                background: rgba(139,26,26,0.05);
-                transform: translateY(-2px);
-            }
-        }
-    }
-
-    .home-hero__trust {
-        display: none; // Hidden as per image
+      padding: 0 20px;
+      align-items: center;
+      margin-bottom: 40px;
+      flex: none;
+      width: 100%;
     }
 
     .home-hero__img {
-        position: relative;
-        flex: 1;
-        padding-right: 24px;
-        z-index: 2;
-        display: flex;
-        justify-content: flex-end;
+      padding: 0 20px;
+      justify-content: center;
+      flex: none;
+      width: 100%;
 
-        img {
-            width: 100%;
-            max-width: 580px;
-            height: auto;
-            aspect-ratio: 4/3;
-            object-fit: cover;
-            border-radius: 32px; // Large rounded corners as per image
-            box-shadow: 0 20px 60px rgba(0,0,0,0.1);
-        }
+      img {
+        max-width: 100%;
+        border-radius: 20px;
+      }
+    }
+  }
+
+  @media (max-width: 768px) {
+    padding-top: 30px;
+    padding-bottom: 30px;
+
+    .home-hero__title {
+      font-size: 32px;
+      margin-bottom: 16px;
+    }
+
+    .home-hero__subtitle {
+      margin-bottom: 24px;
+    }
+
+    .home-hero__ctas {
+      flex-direction: column;
+      width: 100%;
+      gap: 12px;
+
+      .btn-primary,
+      .btn-outline {
+        width: 100%;
+      }
     }
 
     .home-hero__img-badge {
-        position: absolute;
-        bottom: 32px;
-        left: -16px;
-        background: var(--hero-white);
-        border-radius: 12px;
-        padding: 14px 18px;
-        box-shadow: var(--hero-shadow-lg);
-        display: flex;
-        align-items: center;
-        gap: 12px;
-
-        .big {
-            font-family: 'Lora', serif;
-            font-size: 28px;
-            font-weight: 700;
-            color: var(--hero-red);
-            line-height: 1;
-        }
-
-        .small {
-            font-size: 12px;
-            color: var(--hero-mid);
-            line-height: 1.4;
-        }
+      display: none;
     }
-
-    @media (max-width: 1024px) {
-        flex-direction: column;
-        text-align: center;
-        padding-top: 60px;
-        padding-bottom: 60px;
-
-        .home-hero__content {
-            padding: 0 20px;
-            align-items: center;
-            margin-bottom: 40px;
-        }
-
-        .home-hero__img {
-            padding-right: 20px;
-            padding-left: 20px;
-            justify-content: center;
-            
-            img {
-                max-width: 100%;
-            }
-        }
-    }
-
-    @media (max-width: 768px) {
-        .home-hero__title {
-            font-size: 32px;
-        }
-
-        .home-hero__ctas {
-            flex-direction: column;
-            width: 100%;
-
-            .btn-primary, .btn-outline {
-                width: 100%;
-            }
-        }
-
-        .home-hero__img-badge {
-            display: none;
-        }
-    }
+  }
 }

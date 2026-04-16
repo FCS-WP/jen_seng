@@ -22,13 +22,13 @@
 				},
 				{
 					"slug": "secondary",
-					"color": "#FDF8E1",
-					"name": "Jen Seng Yellow"
+					"color": "#e0e0e0",
+					"name": "Jen Seng Gray"
 				},
 				{
 					"slug": "secondary-light",
-					"color": "#FDF8E1",
-					"name": "Yellow Light"
+					"color": "#e0e0e0",
+					"name": "Gray Light"
 				},
 				{
 					"slug": "background",
@@ -72,7 +72,7 @@
 				},
 				{
 					"slug": "footer-bg",
-					"color": "#1C1410",
+					"color": "#8B1A1A",
 					"name": "Footer Background"
 				}
 			]

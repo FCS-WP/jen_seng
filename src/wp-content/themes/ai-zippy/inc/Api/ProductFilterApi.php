@@ -41,6 +41,79 @@ class ProductFilterApi
             'callback'            => [self::class, 'getFilterOptions'],
             'permission_callback' => [self::class, 'checkPermission'],
         ]);
+
+        register_rest_route(self::NAMESPACE, '/cart/add', [
+            'methods'             => 'POST',
+            'callback'            => [self::class, 'addToCart'],
+            'permission_callback' => '__return_true', // Nonce is handled by standard REST API
+        ]);
+    }
+
+    /**
+     * POST /cart/add
+     */
+    public static function addToCart(WP_REST_Request $request): WP_REST_Response
+    {
+        if (!function_exists('WC')) {
+            return new WP_REST_Response(['error' => 'WooCommerce not active'], 500);
+        }
+
+        // Initialize cart and session if needed for REST API
+        if (null === WC()->session) {
+            $session_class = apply_filters('woocommerce_session_handler', 'WC_Session_Handler');
+            WC()->session = new $session_class();
+            WC()->session->init();
+        }
+
+        if (null === WC()->cart) {
+            WC()->cart = new \WC_Cart();
+        }
+
+        if (null === WC()->customer) {
+            WC()->customer = new \WC_Customer(get_current_user_id(), true);
+        }
+
+        // Ensure session is persisted for guests
+        if (!WC()->session->has_session()) {
+            WC()->session->set_customer_session_cookie(true);
+        }
+
+        $product_id = absint($request->get_param('product_id'));
+        $quantity   = absint($request->get_param('quantity') ?: 1);
+
+        if (!$product_id) {
+            return new WP_REST_Response(['error' => 'Invalid product ID'], 400);
+        }
+
+        // Add to cart
+        $passed_validation = apply_filters('woocommerce_add_to_cart_validation', true, $product_id, $quantity);
+        $cart_item_key     = false;
+
+        if ($passed_validation) {
+            $cart_item_key = WC()->cart->add_to_cart($product_id, $quantity);
+        }
+
+        if (!$cart_item_key) {
+            return new WP_REST_Response(['error' => 'Could not add product to cart'], 400);
+        }
+
+        // Force cart to calculate totals before returning fragments
+        WC()->cart->calculate_totals();
+
+        // Get updated fragments
+        ob_start();
+        woocommerce_mini_cart();
+        $mini_cart = ob_get_clean();
+
+        $fragments = apply_filters('woocommerce_add_to_cart_fragments', [
+            'div.widget_shopping_cart_content' => '<div class="widget_shopping_cart_content">' . $mini_cart . '</div>',
+        ]);
+
+        return new WP_REST_Response([
+            'success'   => true,
+            'fragments' => $fragments,
+            'cart_hash' => WC()->cart->get_cart_hash(),
+        ], 200);
     }
 
     /**
@@ -128,7 +201,9 @@ class ProductFilterApi
                     $args['include'] = $merged_ids;
                 } else {
                     return new WP_REST_Response([
-                        'products' => [], 'total' => 0, 'pages' => 0,
+                        'products' => [],
+                        'total' => 0,
+                        'pages' => 0,
                     ], 200);
                 }
             } else {
@@ -262,7 +337,9 @@ class ProductFilterApi
 
         $categories = wp_get_post_terms($product->get_id(), 'product_cat', ['fields' => 'all']);
         $cat_list = array_map(fn($cat) => [
-            'id' => $cat->term_id, 'name' => $cat->name, 'slug' => $cat->slug,
+            'id' => $cat->term_id,
+            'name' => $cat->name,
+            'slug' => $cat->slug,
         ], $categories);
 
         $attrs = [];
@@ -340,7 +417,9 @@ class ProductFilterApi
                     'slug'    => $taxonomy,
                     'type'    => $attribute->attribute_type,
                     'options' => array_map(fn($t) => [
-                        'name' => $t->name, 'slug' => $t->slug, 'count' => $t->count,
+                        'name' => $t->name,
+                        'slug' => $t->slug,
+                        'count' => $t->count,
                     ], $terms),
                 ];
             }

@@ -29,24 +29,125 @@ const ProductCard = ({ product }) => {
                     <button 
                         className="btn-cart"
                         disabled={isOos}
-                        onClick={(e) => {
+                        onClick={async (e) => {
                             e.preventDefault();
                             const btn = e.currentTarget;
-                            btn.textContent = '✓ Added';
-                            btn.classList.add('added');
-                            
-                            // Trigger WooCommerce added_to_cart event if needed
-                            document.body.dispatchEvent(new CustomEvent('added_to_cart', {
-                                detail: {
-                                    product_id: product.id,
-                                    quantity: 1
-                                }
-                            }));
+                            if (btn.classList.contains('loading')) return;
 
-                            setTimeout(() => {
-                                btn.textContent = 'Add to Cart';
-                                btn.classList.remove('added');
-                            }, 2000);
+                            btn.classList.add('loading');
+                            const originalText = btn.textContent;
+                            btn.textContent = 'Adding...';
+
+                            try {
+                                const homeUrl = window.zippyShopData?.homeUrl || window.location.origin + '/';
+                                const ajaxUrl = homeUrl.endsWith('/') ? homeUrl : homeUrl + '/';
+                                const storeNonce = window.wcBlocksMiddlewareConfig?.storeApiNonce || window.zippyShopData?.storeNonce;
+                                
+                                let success = false;
+                                let cartData = null;
+
+                                // 1. PRIMARY ATTEMPT: Use Store API (Best for modern WooCommerce Blocks)
+                                try {
+                                    const storeResponse = await fetch(`${ajaxUrl}wp-json/wc/store/v1/cart/add-item`, {
+                                        method: 'POST',
+                                        headers: {
+                                            'Content-Type': 'application/json',
+                                            'Nonce': storeNonce,
+                                            'X-WC-Store-API-Nonce': storeNonce
+                                        },
+                                        body: JSON.stringify({
+                                            id: product.id,
+                                            quantity: 1
+                                        }),
+                                        credentials: 'include'
+                                    });
+
+                                    if (storeResponse.ok) {
+                                        cartData = await storeResponse.json();
+                                        success = true;
+                                    }
+                                } catch (storeError) {
+                                    console.warn('Store API failed:', storeError);
+                                }
+
+                                // 2. FALLBACK: Use Legacy AJAX if Store API failed
+                                if (!success) {
+                                    try {
+                                        const formData = new FormData();
+                                        formData.append('product_id', product.id);
+                                        formData.append('quantity', 1);
+
+                                        const response = await fetch(`${ajaxUrl}?wc-ajax=add_to_cart`, {
+                                            method: 'POST',
+                                            body: formData,
+                                            credentials: 'include'
+                                        });
+
+                                        const responseJSON = await response.json().catch(() => null);
+                                        if (responseJSON && !responseJSON.error) {
+                                            success = true;
+                                        }
+                                    } catch (legacyError) {
+                                        console.warn('Legacy Fallback failed:', legacyError);
+                                    }
+                                }
+
+                                if (!success) {
+                                    throw new Error('FAILED');
+                                }
+
+                                // SUCCESS UI STATE
+                                btn.textContent = '✓ Added';
+                                btn.classList.remove('loading');
+                                btn.classList.add('added');
+                                
+                                // REFRESH LOGIC (Sync with Mini Cart)
+                                try {
+                                    // A. Update Block Mini Cart via @wordpress/data
+                                    if (window.wp?.data?.dispatch) {
+                                        const store = window.wp.data.dispatch('wc/store/cart');
+                                        if (store) {
+                                            if (cartData && store.receiveCart) {
+                                                store.receiveCart(cartData);
+                                            }
+                                            // Force re-fetch to ensure all components are in sync
+                                            store.invalidateResolution?.('getCart');
+                                        }
+                                    }
+
+                                    // B. Trigger WC Block Events (specifically bubbles for React listeners)
+                                    const blockEvent = new CustomEvent('wc-blocks_added_to_cart', {
+                                        bubbles: true,
+                                        cancelable: true,
+                                        detail: { preserveCartData: !!cartData }
+                                    });
+                                    document.body.dispatchEvent(blockEvent);
+                                    window.dispatchEvent(blockEvent);
+
+                                    // C. Trigger Legacy jQuery Events (for classic mini-carts/header icons)
+                                    if (window.jQuery) {
+                                        const $ = window.jQuery;
+                                        $(document.body).trigger('added_to_cart');
+                                        $(document.body).trigger('wc_fragment_refresh');
+                                    }
+                                } catch (syncError) {
+                                    console.warn('Sync Warning:', syncError);
+                                }
+
+                                setTimeout(() => {
+                                    btn.textContent = originalText;
+                                    btn.classList.remove('added');
+                                }, 2000);
+
+                            } catch (error) {
+                                console.error('Final Catch:', error);
+                                btn.textContent = 'Error: ' + error.message;
+                                btn.classList.remove('loading');
+                                setTimeout(() => {
+                                    btn.textContent = originalText;
+                                    btn.classList.remove('added');
+                                }, 3000);
+                            }
                         }}
                     >
                         {isOos ? 'Out of Stock' : 'Add to Cart'}
