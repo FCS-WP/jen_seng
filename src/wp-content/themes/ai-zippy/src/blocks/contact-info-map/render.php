@@ -43,7 +43,7 @@ $wrapper_attributes = get_block_wrapper_attributes( [
 						</div>
 					</div>
 					<div class="contact-divider"></div>
-					<a href="https://maps.google.com" target="_blank" class="btn-primary" style="width:100%;justify-content:center;margin-top:4px">
+					<a href="https://maps.google.com" target="_blank" class="btn-primary btn-full">
 						📍 Get Directions
 					</a>
 				</div>
